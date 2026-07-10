@@ -40,3 +40,63 @@ The system will provide an efficient and user-friendly solution for managing med
 - Reliability
 - Performance
 - Usability
+
+# 5. Functional Requirements
+
+## 5.1 User Authentication
+
+- User Login
+- User Logout
+- Change Password
+
+## 5.2 Medicine Management
+
+- Add Medicine
+- Update Medicine
+- Delete Medicine 
+- Search Medicine
+- View All Medicines
+
+## 5.3 Supplier Management
+
+- Add Supplier
+- Update Supplier 
+- Delete Supplier
+- Search Supplier
+
+## 5.4 Customer Management
+
+- Add Customer
+- Search Customer
+- Customer Purchase History
+
+## 5.5 Inventory Management
+
+- Add Stock
+- Update Stock
+- Low Stock Alert
+- Expiry Alert
+
+## 5.6 Billing System
+
+- Create Bill
+- Print Bill
+- GST Calculation
+- Discount
+- Payment
+
+## 5.7 Reports
+
+- Daily Sales
+- Monthly Sales
+- Expiry Medicines 
+- Low Stock Reports
+
+# 6. Non-Functional Requirements
+
+- Easy to use
+- Fast Response Time
+- Security Login
+- Reliable Data Storage
+- Maintainable Code
+- Scalable Design
