@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MedicineDAO{
-    public List<Medicine> getAllmedicines(){
+    public List<Medicine> getAllMedicines(){
         List<Medicine> medicineList = new ArrayList<>();
 
         String sql = "SELECT * FROM medicines";
