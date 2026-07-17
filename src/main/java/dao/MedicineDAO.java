@@ -1,6 +1,5 @@
 package dao;
 
-import com.mysql.cj.protocol.Resultset;
 import config.DatabaseConnection;
 import model.Medicine;
 
@@ -59,5 +58,57 @@ public class MedicineDAO{
         }
 
         return medicineList;
+    }
+
+    // ==================================
+    // ADD MEDICINE
+    // ==================================
+
+    public boolean addMedicine(Medicine medicine){
+
+        String sql = """
+                INSERT INTO medicines
+                (
+                medicine_name,
+                formula,
+                category,
+                batch_no,
+                manufacture_date,
+                expiry_date,
+                purchase_price,
+                selling_price,
+                quantity_in_stock,
+                rack_no,
+                supplier_id
+                )
+                VALUES
+                (?,?,?,?,?,?,?,?,?,?,?)
+                """;
+
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)
+
+                ){
+
+            preparedStatement.setString(1, medicine.getMedicineName());
+            preparedStatement.setString(2, medicine.getFormula());
+            preparedStatement.setString(3, medicine.getCategory());
+            preparedStatement.setString(4, medicine.getBatchNo());
+            preparedStatement.setString(5, medicine.getManufactureDate());
+            preparedStatement.setString(6, medicine.getExpiryDate());
+            preparedStatement.setDouble(7, medicine.getPurchasePrice());
+            preparedStatement.setDouble(8, medicine.getSellingPrice());;
+            preparedStatement.setInt(9, medicine.getQuantityInStock());
+            preparedStatement.setString(10, medicine.getRackNo());
+            preparedStatement.setInt(11, medicine.getSupplierId());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0;
+
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }
