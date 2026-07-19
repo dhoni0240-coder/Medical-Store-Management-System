@@ -111,4 +111,82 @@ public class MedicineDAO{
             return false;
         }
     }
+    public Medicine getMedicineById(int medicineId){
+
+        String sql = "SELECT * FROM medicines WHERE medicine_id = ?";
+
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)
+                ){
+
+            preparedStatement.setInt(1, medicineId);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+
+                    int id = resultSet.getInt("medicine_id");
+                    String medicineName = resultSet.getString("medicine_name");
+                    String formula = resultSet.getString("formula");
+                    String category = resultSet.getString("category");
+                    String batchNo = resultSet.getString("batch_no");
+                    String manufactureDate = resultSet.getString("manufacture_date");
+                    String expiryDate = resultSet.getString("expiry_date");
+                    double purchasePrice = resultSet.getDouble("purchase_price");
+                    double sellingPrice = resultSet.getDouble("selling_price");
+                    int quantityInStock = resultSet.getInt("quantity_in_stock");
+                    String rackNo = resultSet.getString("rack_no");
+                    int supplierId = resultSet.getInt("supplier_id");
+
+                    return new Medicine(
+                            id,
+                            medicineName,
+                            formula,
+                            category,
+                            batchNo,
+                            manufactureDate,
+                            expiryDate,
+                            purchasePrice,
+                            sellingPrice,
+                            quantityInStock,
+                            rackNo,
+                            supplierId
+                    );
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //Update Medicine
+    public boolean updateMedicine(Medicine medicine){
+        String sql = """
+                Update medicines
+                SET 
+                purchase_price = ?,
+                selling_price = ?,
+                quantity_in_stock = ?,
+                rack_no = ?
+                WHERE medicine_id = ?
+                """;
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)
+                ){
+
+            preparedStatement.setDouble(1, medicine.getPurchasePrice());
+            preparedStatement.setDouble(2, medicine.getSellingPrice());
+            preparedStatement.setInt(3, medicine.getQuantityInStock());
+            preparedStatement.setString(4, medicine.getRackNo());
+            preparedStatement.setInt(5, medicine.getMedicineId());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
