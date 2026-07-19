@@ -40,7 +40,7 @@ public class MedicineMenu {
                     break;
 
                 case 3:
-                    System.out.println("Update Medicine - Soon");
+                    updateMedicine();
                     break;
 
                 case 4:
@@ -52,7 +52,7 @@ public class MedicineMenu {
                     break;
 
                 case 0:
-                    System.out.println("Thnk You");
+                    System.out.println("Thank You");
                     return;
 
                 default:
@@ -140,6 +140,53 @@ public class MedicineMenu {
             System.out.println("Medicine Added Successfully");
         } else {
             System.out.println("Failed to add Medicine");
+        }
+    }
+
+    //Update Medicine
+    private void updateMedicine(){
+        System.out.println("""
+                ===========================
+                ---Update Medicine ---
+                ===========================
+                """);
+        System.out.print("Enter Medicine ID : ");
+        int medicineId = scanner.nextInt();
+        scanner.nextLine();
+
+        Medicine medicine = medicineDAO.getMedicineById(medicineId);
+
+        if(medicine == null){
+            System.out.println("Medicine Not Found");
+            return;
+        }
+        System.out.println("\nCurrent Medicine Details : ");
+        System.out.println(medicine);
+
+        System.out.print("\nEnter New Purchase Price : ");
+        double newPurchasePrice = scanner.nextDouble();
+
+        System.out.print("\nEnter New Selling Price : ");
+        double newSellingPrice = scanner.nextDouble();
+
+        System.out.print("\nEnter New Quantity : ");
+        int newQuantityInStock = scanner.nextInt();
+
+        scanner.nextLine();
+
+        System.out.print("Enter Rack No : ");
+        String newRackNo = scanner.nextLine();
+
+        medicine.setPurchasePrice(newPurchasePrice);
+        medicine.setSellingPrice(newSellingPrice);
+        medicine.setQuantityInStock(newQuantityInStock);
+        medicine.setRackNo(newRackNo);
+
+        boolean updated = medicineDAO.updateMedicine(medicine);
+        if(updated){
+            System.out.println("\nMedicine Updated Successfully!");
+        }else{
+            System.out.println("\nFailed to Update Medicine!");
         }
     }
 }
