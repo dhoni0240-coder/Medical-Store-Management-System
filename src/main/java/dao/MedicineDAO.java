@@ -189,4 +189,25 @@ public class MedicineDAO{
             return false;
         }
     }
+    public boolean deleteMedicine(int medicineId){
+        String sql = """
+                DELETE FROM medicines
+                WHERE medicine_id = ?
+                """;
+
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)
+                ){
+
+            preparedStatement.setInt(1, medicineId);
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            return rowsAffected > 0;
+
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -44,7 +44,7 @@ public class MedicineMenu {
                     break;
 
                 case 4:
-                    System.out.println("Delete Medicine - Soon");
+                    deleteMedicine();
                     break;
 
                 case 5:
@@ -187,6 +187,43 @@ public class MedicineMenu {
             System.out.println("\nMedicine Updated Successfully!");
         }else{
             System.out.println("\nFailed to Update Medicine!");
+        }
+    }
+    private void deleteMedicine(){
+        System.out.println("""
+                =======================
+                ---Delete Medicine---
+                =======================
+                """);
+        System.out.print("Enter Medicine ID : ");
+        int medicineId = scanner.nextInt();
+        scanner.nextLine();
+
+        Medicine medicine = medicineDAO.getMedicineById(medicineId);
+
+        if(medicine == null){
+            System.out.println("Medicine Not Found");
+            return;
+        }
+        //Show medicine details
+        System.out.print("\nCurrent Medicine Details : ");
+        System.out.println(medicine);
+
+        //Confirmation before deleting
+        System.out.print("\nAre you sure want to delete this Medicine ?(Y/N) : ");
+        String choice = scanner.nextLine();
+
+        if(!choice.equalsIgnoreCase("Y")){
+            System.out.println("Delete Operation Cancelled.");
+            return;
+        }
+        //Delete Medicine
+        boolean deleted = medicineDAO.deleteMedicine(medicineId);
+
+        if(deleted){
+            System.out.println("\nMedicine deleted Successfully!");
+        }else{
+            System.out.println("\nFailed to delete Medicine!");
         }
     }
 }
