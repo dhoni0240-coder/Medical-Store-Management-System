@@ -48,7 +48,7 @@ public class MedicineMenu {
                     break;
 
                 case 5:
-                    System.out.println("Search Medicine - Soon");
+                    searchMedicine();
                     break;
 
                 case 0:
@@ -189,6 +189,7 @@ public class MedicineMenu {
             System.out.println("\nFailed to Update Medicine!");
         }
     }
+    //For Delete Medicine
     private void deleteMedicine(){
         System.out.println("""
                 =======================
@@ -217,6 +218,7 @@ public class MedicineMenu {
             System.out.println("Delete Operation Cancelled.");
             return;
         }
+
         //Delete Medicine
         boolean deleted = medicineDAO.deleteMedicine(medicineId);
 
@@ -224,6 +226,98 @@ public class MedicineMenu {
             System.out.println("\nMedicine deleted Successfully!");
         }else{
             System.out.println("\nFailed to delete Medicine!");
+        }
+    }
+    //For searching medicine
+    private void searchMedicine(){
+        System.out.println("""
+                =======================
+                ---Search Medicine ---
+                =======================
+                """);
+        System.out.println("1. Search by ID");
+        System.out.println("2. Search by Name");
+        System.out.println("3. Search by Category");
+        System.out.println("4. Search by Formula");
+        System.out.println("5. Search by Batch No");
+        System.out.println("0. Back");
+
+        System.out.print("Enter Choice : ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch(choice){
+            case 1:
+                searchMedicineById();
+                break;
+
+            case 2:
+                searchMedicineByName();
+                break;
+
+            case 3:
+                System.out.println("Search by Category - Coming Soon");
+                break;
+
+            case 4:
+                System.out.println("Search by Formula - Coming Soon");
+                break;
+
+            case 5:
+                System.out.println("Search by Batch No - Coming Soon");
+                break;
+
+            case 0:
+                return;
+            default:
+                System.out.println("Invalid Choice");
+        }
+    }
+    private void searchMedicineById(){
+        System.out.println("""
+                ===========================
+                ---Search Medicine by ID---
+                ===========================
+                """);
+        System.out.print("Enter Medicine ID : ");
+        int medicineId = scanner.nextInt();
+        scanner.nextLine();
+
+        Medicine medicine = medicineDAO.getMedicineById(medicineId);
+
+        if(medicine == null){
+            System.out.println("\nMedicine not Found!");
+        }else{
+            System.out.println("\nMedicine Found Successfully!");
+            System.out.println("-------------------------------------------------------");
+            System.out.println(medicine);
+            System.out.println("-------------------------------------------------------");
+        }
+    }
+    //Search Medicine by Name
+    private void searchMedicineByName(){
+        System.out.println("""
+                =============================
+                ---Search Medicine by Name---
+                =============================
+                """);
+
+        System.out.print("Enter Medicine Name : ");
+        String medicineName = scanner.nextLine();
+
+        List<Medicine> medicineList = medicineDAO.searchMedicineByName(medicineName);
+
+        if(medicineList.isEmpty()){
+            System.out.println("\nMedicine Not Found!");
+            return;
+        }
+
+        System.out.println("\nMedicine(s) Found : ");
+        System.out.println("=============================================================");
+
+        for(Medicine medicine : medicineList){
+            System.out.println(medicine);
+            System.out.println("=========================================================");
         }
     }
 }
