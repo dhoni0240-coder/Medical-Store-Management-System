@@ -144,7 +144,7 @@ public class MedicineMenu {
     }
 
     //Update Medicine
-    private void updateMedicine(){
+    private void updateMedicine() {
         System.out.println("""
                 ===========================
                 ---Update Medicine ---
@@ -156,7 +156,7 @@ public class MedicineMenu {
 
         Medicine medicine = medicineDAO.getMedicineById(medicineId);
 
-        if(medicine == null){
+        if (medicine == null) {
             System.out.println("Medicine Not Found");
             return;
         }
@@ -183,14 +183,15 @@ public class MedicineMenu {
         medicine.setRackNo(newRackNo);
 
         boolean updated = medicineDAO.updateMedicine(medicine);
-        if(updated){
+        if (updated) {
             System.out.println("\nMedicine Updated Successfully!");
-        }else{
+        } else {
             System.out.println("\nFailed to Update Medicine!");
         }
     }
+
     //For Delete Medicine
-    private void deleteMedicine(){
+    private void deleteMedicine() {
         System.out.println("""
                 =======================
                 ---Delete Medicine---
@@ -202,7 +203,7 @@ public class MedicineMenu {
 
         Medicine medicine = medicineDAO.getMedicineById(medicineId);
 
-        if(medicine == null){
+        if (medicine == null) {
             System.out.println("Medicine Not Found");
             return;
         }
@@ -214,7 +215,7 @@ public class MedicineMenu {
         System.out.print("\nAre you sure want to delete this Medicine ?(Y/N) : ");
         String choice = scanner.nextLine();
 
-        if(!choice.equalsIgnoreCase("Y")){
+        if (!choice.equalsIgnoreCase("Y")) {
             System.out.println("Delete Operation Cancelled.");
             return;
         }
@@ -222,14 +223,15 @@ public class MedicineMenu {
         //Delete Medicine
         boolean deleted = medicineDAO.deleteMedicine(medicineId);
 
-        if(deleted){
+        if (deleted) {
             System.out.println("\nMedicine deleted Successfully!");
-        }else{
+        } else {
             System.out.println("\nFailed to delete Medicine!");
         }
     }
+
     //For searching medicine
-    private void searchMedicine(){
+    private void searchMedicine() {
         System.out.println("""
                 =======================
                 ---Search Medicine ---
@@ -246,7 +248,7 @@ public class MedicineMenu {
         int choice = scanner.nextInt();
         scanner.nextLine();
 
-        switch(choice){
+        switch (choice) {
             case 1:
                 searchMedicineById();
                 break;
@@ -256,15 +258,15 @@ public class MedicineMenu {
                 break;
 
             case 3:
-                System.out.println("Search by Category - Coming Soon");
+                searchMedicineByCategory();
                 break;
 
             case 4:
-                System.out.println("Search by Formula - Coming Soon");
+                searchMedicineByFormula();
                 break;
 
             case 5:
-                System.out.println("Search by Batch No - Coming Soon");
+                searchMedicineByBatchNo();
                 break;
 
             case 0:
@@ -273,7 +275,8 @@ public class MedicineMenu {
                 System.out.println("Invalid Choice");
         }
     }
-    private void searchMedicineById(){
+
+    private void searchMedicineById() {
         System.out.println("""
                 ===========================
                 ---Search Medicine by ID---
@@ -285,17 +288,18 @@ public class MedicineMenu {
 
         Medicine medicine = medicineDAO.getMedicineById(medicineId);
 
-        if(medicine == null){
+        if (medicine == null) {
             System.out.println("\nMedicine not Found!");
-        }else{
+        } else {
             System.out.println("\nMedicine Found Successfully!");
             System.out.println("-------------------------------------------------------");
             System.out.println(medicine);
             System.out.println("-------------------------------------------------------");
         }
     }
+
     //Search Medicine by Name
-    private void searchMedicineByName(){
+    private void searchMedicineByName() {
         System.out.println("""
                 =============================
                 ---Search Medicine by Name---
@@ -307,7 +311,7 @@ public class MedicineMenu {
 
         List<Medicine> medicineList = medicineDAO.searchMedicineByName(medicineName);
 
-        if(medicineList.isEmpty()){
+        if (medicineList.isEmpty()) {
             System.out.println("\nMedicine Not Found!");
             return;
         }
@@ -315,9 +319,81 @@ public class MedicineMenu {
         System.out.println("\nMedicine(s) Found : ");
         System.out.println("=============================================================");
 
+        for (Medicine medicine : medicineList) {
+            System.out.println(medicine);
+            System.out.println("---------------------------------------------------------");
+        }
+    }
+
+    //Search by Category
+    private void searchMedicineByCategory() {
+        System.out.println("""
+                ========================
+                ---Search by Category---
+                ========================""");
+        System.out.print("Enter Category : ");
+        String category = scanner.nextLine();
+
+        List<Medicine> medicineList = medicineDAO.searchMedicineByCategory(category);
+
+        if (medicineList.isEmpty()) {
+            System.out.println("\nMedicine Not Found!");
+            return;
+        }
+
+        System.out.println("\nMedicine Found : ");
+        System.out.println("============================================================");
+
+        for (Medicine medicine : medicineList) {
+            System.out.println(medicine);
+            System.out.println("--------------------------------------------------------");
+        }
+    }
+
+    //Search Medicine by Formula
+    private void searchMedicineByFormula() {
+        System.out.println("""
+                ========================
+                ---Search by Formula---
+                ========================""");
+        System.out.print("Enter Formula : ");
+        String formula = scanner.nextLine();
+
+        List<Medicine> medicineList = medicineDAO.searchMedicineByFormula(formula);
+
+        if (medicineList.isEmpty()) {
+            System.out.println("\nMedicine Not Found!");
+            return;
+        }
+        System.out.println("\nMedicine Found : ");
+        System.out.println("============================================================");
+
+        for (Medicine medicine : medicineList) {
+            System.out.println(medicine);
+            System.out.println("--------------------------------------------------------");
+        }
+    }
+    //Search Medicine By batch Number
+    private void searchMedicineByBatchNo(){
+        System.out.println("""
+                ========================
+                ---Search by BatchNo---
+                ========================""");
+        System.out.print("Enter Batch No. : ");
+        String batchNo = scanner.nextLine();
+
+        List<Medicine> medicineList = medicineDAO.searchMedicineByBatchNo(batchNo);
+
+        if(medicineList.isEmpty()){
+            System.out.println("\nMedicine Not Found!");
+            return;
+        }
+        System.out.println("\nMedicine Found : ");
+        System.out.println("============================================================");
+
         for(Medicine medicine : medicineList){
             System.out.println(medicine);
-            System.out.println("=========================================================");
+            System.out.println("--------------------------------------------------------");
         }
     }
 }

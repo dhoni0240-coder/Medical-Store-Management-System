@@ -159,7 +159,8 @@ public class MedicineDAO{
         }
         return null;
     }
-    //Search medicine by Name
+
+    //Search Medicine by Name
     public List<Medicine> searchMedicineByName(String medicineName){
         List<Medicine> medicineList = new ArrayList<>();
 
@@ -202,6 +203,162 @@ public class MedicineDAO{
                         rackNo,
                         supplierId
                         );
+                medicineList.add(medicine);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return medicineList;
+    }
+
+    //Search Medicine By Category
+    public List<Medicine> searchMedicineByCategory(String category){
+        List<Medicine> medicineList = new ArrayList<>();
+        String sql = """
+                SELECT * FROM medicines
+                WHERE category LIKE ?
+                """;
+
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                ){
+
+            preparedStatement.setString(1, "%" +category+ "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                int medicineId = resultSet.getInt("medicine_id");
+                String medicineName = resultSet.getString("medicine_name");
+                String formula = resultSet.getString("formula");
+                String categoryResult = resultSet.getString("category");
+                String batchNo = resultSet.getString("batch_no");
+                String manufactureDate = resultSet.getString("manufacture_date");
+                String expiryDate = resultSet.getString("expiry_date");
+                double purchasePrice = resultSet.getDouble("purchase_price");
+                double sellingPrice = resultSet.getDouble("selling_price");
+                int quantityInStock = resultSet.getInt("quantity_in_stock");
+                String rackNo = resultSet.getString("rack_no");
+                int supplierId = resultSet.getInt("supplier_id");
+
+                Medicine medicine = new Medicine(medicineId,
+                        medicineName,
+                        formula,
+                        categoryResult,
+                        batchNo,
+                        manufactureDate,
+                        expiryDate,
+                        purchasePrice,
+                        sellingPrice,
+                        quantityInStock,
+                        rackNo,
+                        supplierId
+                );
+                medicineList.add(medicine);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return medicineList;
+    }
+
+    //Search Medicine by Formula
+    public List<Medicine> searchMedicineByFormula(String formula){
+        List<Medicine> medicineList = new ArrayList<>();
+        String sql = """
+                SELECT * FROM medicines
+                WHERE formula LIKE ?
+                """;
+
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ){
+
+            preparedStatement.setString(1, "%" +formula+ "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                int medicineId = resultSet.getInt("medicine_id");
+                String medicineName = resultSet.getString("medicine_name");
+                String formulaResult = resultSet.getString("formula");
+                String category = resultSet.getString("category");
+                String batchNo = resultSet.getString("batch_no");
+                String manufactureDate = resultSet.getString("manufacture_date");
+                String expiryDate = resultSet.getString("expiry_date");
+                double purchasePrice = resultSet.getDouble("purchase_price");
+                double sellingPrice = resultSet.getDouble("selling_price");
+                int quantityInStock = resultSet.getInt("quantity_in_stock");
+                String rackNo = resultSet.getString("rack_no");
+                int supplierId = resultSet.getInt("supplier_id");
+
+                Medicine medicine = new Medicine(medicineId,
+                        medicineName,
+                        formulaResult,
+                        category,
+                        batchNo,
+                        manufactureDate,
+                        expiryDate,
+                        purchasePrice,
+                        sellingPrice,
+                        quantityInStock,
+                        rackNo,
+                        supplierId
+                );
+                medicineList.add(medicine);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return medicineList;
+    }
+
+    //Search Medicine by Batch Number
+    public List<Medicine> searchMedicineByBatchNo(String batchNo){
+        List<Medicine> medicineList = new ArrayList<>();
+        String sql = """
+                SELECT * FROM medicines
+                WHERE batch_no LIKE ?
+                """;
+
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        ){
+
+            preparedStatement.setString(1, "%" +batchNo+ "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                int medicineId = resultSet.getInt("medicine_id");
+                String medicineName = resultSet.getString("medicine_name");
+                String formula = resultSet.getString("formula");
+                String category = resultSet.getString("category");
+                String batchNoResult = resultSet.getString("batch_no");
+                String manufactureDate = resultSet.getString("manufacture_date");
+                String expiryDate = resultSet.getString("expiry_date");
+                double purchasePrice = resultSet.getDouble("purchase_price");
+                double sellingPrice = resultSet.getDouble("selling_price");
+                int quantityInStock = resultSet.getInt("quantity_in_stock");
+                String rackNo = resultSet.getString("rack_no");
+                int supplierId = resultSet.getInt("supplier_id");
+
+                Medicine medicine = new Medicine(medicineId,
+                        medicineName,
+                        formula,
+                        category,
+                        batchNoResult,
+                        manufactureDate,
+                        expiryDate,
+                        purchasePrice,
+                        sellingPrice,
+                        quantityInStock,
+                        rackNo,
+                        supplierId
+                );
                 medicineList.add(medicine);
             }
 
