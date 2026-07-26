@@ -10,10 +10,10 @@ public class Supplier{
     //Constructor
     public Supplier(int supplierId,
                     String supplierName,
-                    String contactPerson,
                     String phone,
                     String email,
-                    String address){
+                    String address,
+                    String companyName){
         this.supplierId = supplierId;
         this.supplierName = supplierName;
         this.phone = phone;

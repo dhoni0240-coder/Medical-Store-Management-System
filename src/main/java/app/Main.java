@@ -1,13 +1,13 @@
 package app;
 
-import menu.MedicineMenu;
+import menu.SupplierMenu;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        MedicineMenu medicineMenu = new MedicineMenu();
-        medicineMenu.showMenu();
+        SupplierMenu supplierMenu = new SupplierMenu();
+        supplierMenu.showMenu();
 
     }
 }
