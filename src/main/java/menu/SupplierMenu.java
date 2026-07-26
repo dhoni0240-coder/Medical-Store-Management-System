@@ -1,6 +1,7 @@
 package menu;
 
 import dao.SupplierDAO;
+import model.Medicine;
 import model.Supplier;
 
 import java.util.List;
@@ -110,6 +111,96 @@ public class SupplierMenu{
             System.out.println("Supplier Added Successfully!");
         }else{
             System.out.println("Failed to Add Supplier!");
+        }
+    }
+
+    //Update Medicine
+    private void updateSupplier(){
+        System.out.println("""
+                ========================
+                ---Update Suppliers---
+                ========================
+                """);
+
+        System.out.print("Supplier ID : ");
+        int supplierId = scanner.nextInt();
+        scanner.nextLine();
+
+        Supplier supplier = supplierDAO.getSupplierById(supplierId);
+
+        if(supplier == null){
+            System.out.println("Supplier Not found!");
+            return;
+        }
+        System.out.println("\nCurrent Supplier detail : ");
+        System.out.println(supplier);
+
+        System.out.print("\nEnter new Supplier Name : ");
+        String newSupplierName = scanner.nextLine();
+
+        System.out.print("\nEnter new Supplier Phone :");
+        String newPhone = scanner.nextLine();
+
+        System.out.print("\nEnter new Supplier Email : ");
+        String newEmail = scanner.nextLine();
+
+        System.out.print("\nEnter new Supplier Address : ");
+        String newAddress = scanner.nextLine();
+
+        System.out.print("\nEnter new Supplier Company Name : ");
+        String newCompanyName = scanner.nextLine();
+
+        supplier.setSupplierName(newSupplierName);
+        supplier.setPhone(newPhone);
+        supplier.setEmail(newEmail);
+        supplier.setAddress(newAddress);
+        supplier.setCompanyName(newCompanyName);
+
+        boolean updated = supplierDAO.updateSupplier(supplier);
+        if(updated){
+            System.out.println("\nSupplier Updated Successfully!");
+        }else{
+            System.out.println("\nFailed to add Supplier!");
+        }
+    }
+
+    //For Delete Supplier
+    private void deleteSupplier() {
+        System.out.println("""
+                =======================
+                ---Delete Suppliers---
+                =======================
+                """);
+        System.out.print("Enter Supplier ID : ");
+        int supplierId = scanner.nextInt();
+        scanner.nextLine();
+
+        Supplier supplier = supplierDAO.getSupplierById(supplierId);
+
+        if (supplier == null) {
+            System.out.println("Supplier Not Found");
+            return;
+        }
+        //Show supplier details
+        System.out.print("\nCurrent Supplier Details : ");
+        System.out.println(supplier);
+
+        //Confirmation before deleting
+        System.out.print("\nAre you sure want to delete this Supplier ?(Y/N) : ");
+        String choice = scanner.nextLine();
+
+        if (!choice.equalsIgnoreCase("Y")) {
+            System.out.println("Delete Operation Cancelled.");
+            return;
+        }
+
+        //Delete Supplier
+        boolean deleted = supplierDAO.deleteSupplier(supplierId);
+
+        if (deleted) {
+            System.out.println("\nSupplier deleted Successfully!");
+        } else {
+            System.out.println("\nFailed to delete Supplier!");
         }
     }
 }
