@@ -58,7 +58,7 @@ public class SupplierDAO{
                 email,
                 address,
                 company_name
-                ) 
+                )
                 VALUES
                 (?,?,?,?,?)
                 """;
