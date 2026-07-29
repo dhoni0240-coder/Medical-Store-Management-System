@@ -51,7 +51,7 @@ public class SupplierDAO{
     //==================
     public boolean addSupplier(Supplier supplier){
         String sql = """
-                INSERT  INTO SUPPLIERS
+                INSERT  INTO suppliers
                 (
                 supplier_name,
                 phone,
@@ -146,6 +146,124 @@ public class SupplierDAO{
                         email,
                         address,
                         companyName
+                );
+                supplierList.add(supplier);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return supplierList;
+    }
+    //Search Supplier by Phone
+    public List<Supplier> searchSupplierByPhone(String phone){
+        List<Supplier> supplierList = new ArrayList<>();
+        String sql = """
+                SELECT * FROM suppliers
+                WHERE phone LIKE ?
+                """;
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)
+                ){
+
+            preparedStatement.setString(1, "%" +phone+ "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                int supplierId = resultSet.getInt("supplier_id");
+                String supplierName = resultSet.getString("supplier_name");
+                String phoneResult = resultSet.getString("phone");
+                String email = resultSet.getString("email");
+                String address = resultSet.getString("address");
+                String companyName = resultSet.getString("company_name");
+
+                Supplier supplier = new Supplier(
+                        supplierId,
+                        supplierName,
+                        phoneResult,
+                        email,
+                        address,
+                        companyName
+                );
+                supplierList.add(supplier);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return supplierList;
+    }
+
+    //Search Supplier by Email
+    public List<Supplier> searchSupplierByEmail(String email){
+        List<Supplier> supplierList = new ArrayList<>();
+        String sql = """
+                SELECT * FROM suppliers
+                WHERE email LIKE ?
+                """;
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)
+        ){
+
+            preparedStatement.setString(1, "%" +email+ "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                int supplierId = resultSet.getInt("supplier_id");
+                String supplierName = resultSet.getString("supplier_name");
+                String phone = resultSet.getString("phone");
+                String emailResult = resultSet.getString("email");
+                String address = resultSet.getString("address");
+                String companyName = resultSet.getString("company_name");
+
+                Supplier supplier = new Supplier(
+                        supplierId,
+                        supplierName,
+                        phone,
+                        emailResult,
+                        address,
+                        companyName
+                );
+                supplierList.add(supplier);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return supplierList;
+    }
+    //Search Supplier by Result
+    public List<Supplier> searchSupplierByCompanyName(String companyName){
+        List<Supplier> supplierList = new ArrayList<>();
+        String sql = """
+                SELECT * FROM suppliers
+                WHERE company_name LIKE ?
+                """;
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)
+        ){
+
+            preparedStatement.setString(1, "%" +companyName+ "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                int supplierId = resultSet.getInt("supplier_id");
+                String supplierName = resultSet.getString("supplier_name");
+                String phone = resultSet.getString("phone");
+                String email = resultSet.getString("email");
+                String address = resultSet.getString("address");
+                String companyNameResult = resultSet.getString("company_name");
+
+                Supplier supplier = new Supplier(
+                        supplierId,
+                        supplierName,
+                        phone,
+                        email,
+                        address,
+                        companyNameResult
                 );
                 supplierList.add(supplier);
             }

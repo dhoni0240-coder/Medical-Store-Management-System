@@ -1,13 +1,13 @@
 package app;
 
-import menu.SupplierMenu;
+import menu.CustomerMenu;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        SupplierMenu supplierMenu = new SupplierMenu();
-        supplierMenu.showMenu();
+        CustomerMenu customerMenu = new CustomerMenu();
+        customerMenu.showMenu();
 
     }
 }
