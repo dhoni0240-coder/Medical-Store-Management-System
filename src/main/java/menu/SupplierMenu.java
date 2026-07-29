@@ -1,7 +1,6 @@
 package menu;
 
 import dao.SupplierDAO;
-import model.Medicine;
 import model.Supplier;
 
 import java.util.List;
@@ -40,15 +39,15 @@ public class SupplierMenu{
                     break;
 
                 case 3:
-                    System.out.println("Update Supplier - Coming Soon");
+                    updateSupplier();
                     break;
 
                 case 4:
-                    System.out.println("Delete Supplier - Coming Soon");
+                    deleteSupplier();
                     break;
 
                 case 5:
-                    System.out.println("Search Supplier - Coming Soon");
+                    searchSupplier();
                     break;
 
                 case 0:
@@ -61,7 +60,7 @@ public class SupplierMenu{
         }
     }
 
-    //View All Medicine
+    //View All Supplier
     private void viewAllSuppliers(){
         List<Supplier> suppliers = supplierDAO.getAllSuppliers();
 
@@ -114,7 +113,7 @@ public class SupplierMenu{
         }
     }
 
-    //Update Medicine
+    //Update Supplier
     private void updateSupplier(){
         System.out.println("""
                 ========================
@@ -201,6 +200,177 @@ public class SupplierMenu{
             System.out.println("\nSupplier deleted Successfully!");
         } else {
             System.out.println("\nFailed to delete Supplier!");
+        }
+    }
+
+    //For searching Suppliers
+    private void searchSupplier(){
+        System.out.println("""
+                =======================
+                ---Search Suppliers ---
+                =======================
+                """);
+        System.out.println("1. Search by ID");
+        System.out.println("2. Search by Name");
+        System.out.println("3. Search by Phone");
+        System.out.println("4. Search by Email");
+        System.out.println("5. Search by CompanyName");
+        System.out.println("0. Back");
+
+        System.out.print("Enter Choice : ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (choice) {
+            case 1:
+                searchSupplierById();
+                break;
+
+            case 2:
+                searchSupplierByName();
+                break;
+
+            case 3:
+                searchSupplierByPhone();
+                break;
+
+            case 4:
+                searchSupplierByEmail();
+                break;
+
+            case 5:
+                searchSupplierByCompanyName();
+                break;
+
+            case 0:
+                return;
+            default:
+                System.out.println("Invalid Choice");
+        }
+    }
+
+    //Search by Supplier id
+    private void searchSupplierById() {
+        System.out.println("""
+                ===========================
+                ---Search Supplier by ID---
+                ===========================
+                """);
+        System.out.print("Enter Supplier ID : ");
+        int supplierId = scanner.nextInt();
+        scanner.nextLine();
+
+        Supplier supplier = supplierDAO.getSupplierById(supplierId);
+
+        if (supplier == null) {
+            System.out.println("\nSupplier not Found!");
+        } else {
+            System.out.println("\nSupplier Found Successfully!");
+            System.out.println("-------------------------------------------------------");
+            System.out.println(supplier);
+            System.out.println("-------------------------------------------------------");
+        }
+    }
+
+    //Search Supplier by Name
+    private void searchSupplierByName() {
+        System.out.println("""
+                =============================
+                ---Search Supplier by Name---
+                =============================
+                """);
+
+        System.out.print("Enter Supplier Name : ");
+        String supplierName = scanner.nextLine();
+
+        List<Supplier> supplierList = supplierDAO.searchSupplierByName(supplierName);
+
+        if (supplierList.isEmpty()) {
+            System.out.println("\nSupplier Not Found!");
+            return;
+        }
+
+        System.out.println("\nSupplier(s) Found : ");
+        System.out.println("=============================================================");
+
+        for (Supplier supplier : supplierList) {
+            System.out.println(supplier);
+            System.out.println("---------------------------------------------------------");
+        }
+    }
+
+    //Search by Phone Number
+    private void searchSupplierByPhone() {
+        System.out.println("""
+                =========================
+                ---Search by Phone Number---
+                =========================""");
+        System.out.print("Enter Phone Number : ");
+        String phone = scanner.nextLine();
+
+        List<Supplier> supplierList = supplierDAO.searchSupplierByPhone(phone);
+
+        if (supplierList.isEmpty()) {
+            System.out.println("\nSupplier Not Found!");
+            return;
+        }
+
+        System.out.println("\nSupplier Found : ");
+        System.out.println("============================================================");
+
+        for (Supplier supplier : supplierList) {
+            System.out.println(supplier);
+            System.out.println("--------------------------------------------------------");
+        }
+    }
+
+    //Search by Phone Number
+    private void searchSupplierByEmail() {
+        System.out.println("""
+                =========================
+                ---Search by Email ID---
+                =========================""");
+        System.out.print("Enter Email ID : ");
+        String email = scanner.nextLine();
+
+        List<Supplier> supplierList = supplierDAO.searchSupplierByEmail(email);
+
+        if (supplierList.isEmpty()) {
+            System.out.println("\nSupplier Not Found!");
+            return;
+        }
+
+        System.out.println("\nSupplier Found : ");
+        System.out.println("============================================================");
+
+        for (Supplier supplier : supplierList) {
+            System.out.println(supplier);
+            System.out.println("--------------------------------------------------------");
+        }
+    }
+
+    //Search by Phone Number
+    private void searchSupplierByCompanyName() {
+        System.out.println("""
+                =========================
+                ---Search by Phone Number---
+                =========================""");
+        System.out.print("Enter Company Name : ");
+        String companyName = scanner.nextLine();
+
+        List<Supplier> supplierList = supplierDAO.searchSupplierByCompanyName(companyName);
+
+        if (supplierList.isEmpty()) {
+            System.out.println("\nSupplier Not Found!");
+            return;
+        }
+
+        System.out.println("\nSupplier Found : ");
+        System.out.println("============================================================");
+
+        for (Supplier supplier : supplierList) {
+            System.out.println(supplier);
+            System.out.println("--------------------------------------------------------");
         }
     }
 }

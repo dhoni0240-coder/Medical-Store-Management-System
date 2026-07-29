@@ -72,7 +72,6 @@ public class Supplier{
     }
 
     //toString
-
     @Override
     public String toString(){
         return "Supplier{" +
@@ -81,7 +80,7 @@ public class Supplier{
                 "phone=" +phone+ '\''+
                 "email=" +email+ '\''+
                 "address=" +address+ '\''+
-                "companyName=" +companyName+ '\''+
+                "companyName=" +companyName+
                 '}';
     }
 }

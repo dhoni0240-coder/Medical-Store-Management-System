@@ -276,6 +276,7 @@ public class MedicineMenu {
         }
     }
 
+    //Search by Medicine id
     private void searchMedicineById() {
         System.out.println("""
                 ===========================
