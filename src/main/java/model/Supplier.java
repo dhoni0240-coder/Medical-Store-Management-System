@@ -76,11 +76,11 @@ public class Supplier{
     public String toString(){
         return "Supplier{" +
                 "supplierId=" +supplierId+ '\''+
-                "supplierName=" +supplierName+ '\''+
-                "phone=" +phone+ '\''+
-                "email=" +email+ '\''+
-                "address=" +address+ '\''+
-                "companyName=" +companyName+
+                ", supplierName=" +supplierName+ '\''+
+                ", phone=" +phone+ '\''+
+                ", email=" +email+ '\''+
+                ", address=" +address+ '\''+
+                ", companyName=" +companyName+
                 '}';
     }
 }
