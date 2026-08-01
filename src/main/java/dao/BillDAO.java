@@ -92,7 +92,7 @@ public class BillDAO{
     }
 
     //Creating Bill
-    public boolean createBill(Bill bill){
+    public int createBill(Bill bill){
         String sql = """
                 INSERT INTO bills
                 (
@@ -107,7 +107,8 @@ public class BillDAO{
                 """;
         try(
                 Connection connection = DatabaseConnection.getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                PreparedStatement preparedStatement = connection.prepareStatement(sql,
+                        PreparedStatement.RETURN_GENERATED_KEYS);
                 ){
 
             preparedStatement.setInt(1, bill.getCustomerId());
@@ -116,12 +117,17 @@ public class BillDAO{
             preparedStatement.setDouble(4, bill.getDiscount());
             preparedStatement.setDouble(5, bill.getFinalAmount());
 
-            int rowsAffected = preparedStatement.executeUpdate();
-            return rowsAffected > 0;
+            preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+
+            if(resultSet.next()){
+                return resultSet.getInt(1);
+            }
+            return -1;
 
         }catch(Exception e){
             e.printStackTrace();
-            return false;
+            return -1;
         }
     }
 

@@ -418,4 +418,30 @@ public class MedicineDAO{
             return false;
         }
     }
+
+    //Update Medicine Stock
+    public boolean updateMedicineStock(int medicineId, int newStock){
+        String sql = """
+                UPDATE medicines
+                SET quantity_in_stock = ?
+                WHERE medicine_id = ?
+                """;
+
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)
+                ){
+
+            preparedStatement.setInt(1, newStock);
+            preparedStatement.setInt(2, medicineId);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            return rowsAffected > 0;
+
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
