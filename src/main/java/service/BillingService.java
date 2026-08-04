@@ -181,4 +181,96 @@ public class BillingService {
         System.out.println("Medicine Stock Updated!");
         System.out.println("Thank you for visiting!");
     }
+
+    //View all Bills
+    public void viewAllBills(){
+
+        List<Bill> billList = billDAO.getAllBills();
+
+        if(billList.isEmpty()){
+            System.out.println("No bill found!");
+            return;
+        }
+        System.out.println("""
+                ==============================================================================================
+                Bill ID  Bill date            CustomerID   UserID   Total-Amount Discount   Final Amount
+                ==============================================================================================
+                """);
+
+        for(Bill bill : billList){
+            System.out.println(bill);
+        }
+        System.out.println("==========================================================================================");
+    }
+
+    //View Bill by ID
+    public void viewBillById(){
+
+        System.out.print("Enter Bill ID : ");
+        int billId = scanner.nextInt();
+        scanner.nextLine();
+
+        Bill bill = billDAO.getBillById(billId);
+        if(bill == null){
+            System.out.println("Bill Not Found!");
+            return;
+        }
+        System.out.println("Bill ID : " +bill.getBillId());
+        System.out.println("Bill Date : " +bill.getBillDate());
+        System.out.println("Customer ID : " +bill.getCustomerId());
+        System.out.println("User ID :" +bill.getUserId());
+        System.out.println("Total Amount : " +bill.getTotalAmount());
+        System.out.println("Discount : " +bill.getDiscount());
+        System.out.println("Final Amount :" +bill.getFinalAmount());
+
+        List<BillItem> billItems = billDAO.getBillItems(billId);
+
+        if(billItems.isEmpty()){
+            System.out.println("No Medicine found for this Bill ID!");
+            return;
+        }
+        System.out.println("""
+                =====================================================
+                ------------------PURCHASED MEDICINE-----------------
+                =====================================================
+                -----------------------------------------------------
+                Medicine Name     Quantity     Price     SubTotal
+                -----------------------------------------------------
+                """);
+        for(BillItem item : billItems){
+
+            Medicine medicine = medicineDAO.getMedicineById(item.getMedicineId());
+
+            System.out.printf(
+                    "%-22s %-8d ₹%-11.2f ₹%.2f%n",
+                    medicine.getMedicineName(),
+                    item.getQuantity(),
+                    item.getPrice(),
+                    item.getSubTotal()
+            );
+        }
+        System.out.println("----------------------------------------------------");
+    }
+
+    public void viewBillByCustomerName(){
+
+        System.out.println("Enter Customer Name : ");
+        String customerName = scanner.nextLine();
+
+        List<Bill> billList = billDAO.searchBillByCustomerName(customerName);
+
+        if(billList.isEmpty()){
+            System.out.println("Bill Not Found!");
+            return;
+        }
+        System.out.println("""
+            =========================================================================================
+            Bill ID   Bill Date           CustomerID  User ID   Total        Discount    Final
+            =========================================================================================
+            """);
+        for (Bill bill : billList) {
+            System.out.println(bill);
+        }
+        System.out.println("===================================================================================");
+    }
 }

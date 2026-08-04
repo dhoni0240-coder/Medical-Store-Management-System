@@ -86,14 +86,15 @@ public class Bill{
     //toString
     @Override
     public String toString(){
-        return "Bill{" +
-                "billId=" +billId+ '\''+
-                ", billDate=" +billDate+ '\''+
-                ", customerId=" +customerId+ '\''+
-                ", userId=" +userId+ '\''+
-                ", totalAmount=" +totalAmount+ '\''+
-                ", discount=" +discount+ '\''+
-                ", finalAmount=" +totalAmount+
-                '}';
+        return String.format(
+                "%-8d %-20s %-12d %-8d ₹%-11.2f ₹%-10.2f ₹%.2f",
+                billId,
+                billDate,
+                customerId,
+                userId,
+                totalAmount,
+                discount,
+                finalAmount
+                );
     }
 }

@@ -206,4 +206,49 @@ public class BillDAO{
         }
         return billItemList;
     }
+
+    public List<Bill> searchBillByCustomerName(String customerName){
+        List<Bill> billList = new ArrayList<>();
+
+        String sql = """
+                SELECT b.*
+                FROM bills b
+                JOIN customers c
+                ON b.customer_id = c.customer_id
+                WHERE c.customer_name LIKE ?
+                """;
+
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)
+                ){
+            preparedStatement.setString(1,"%" +customerName+ "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                int billId = resultSet.getInt("bill_id");
+                String billDate = resultSet.getString("bill_date");
+                int customerId = resultSet.getInt("customer_id");
+                int userId = resultSet.getInt("user_id");
+                double totalAmount = resultSet.getDouble("total_amount");
+                double discount = resultSet.getDouble("discount");
+                double finalAmount = resultSet.getDouble("final_amount");
+
+                Bill bill = new Bill(
+                        billId,
+                        billDate,
+                        customerId,
+                        userId,
+                        totalAmount,
+                        discount,
+                        finalAmount
+                );
+                billList.add(bill);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return billList;
+    }
 }
