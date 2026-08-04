@@ -19,6 +19,7 @@ public class BillingMenu {
                     1. Generate Bill
                     2. View All Bills
                     3. View Bill by ID
+                    4. View Bill by Customer Name
                     0. Back
                     """);
 
@@ -33,11 +34,15 @@ public class BillingMenu {
                     break;
 
                 case 2:
-                    System.out.println("Coming Soon...");
+                    billingService.viewAllBills();
                     break;
 
                 case 3:
-                    System.out.println("Coming Soon...");
+                    billingService.viewBillById();
+                    break;
+
+                case 4:
+                    billingService.viewBillByCustomerName();
                     break;
 
                 case 0:
