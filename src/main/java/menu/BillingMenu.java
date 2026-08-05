@@ -18,7 +18,7 @@ public class BillingMenu {
                     ======================
                     1. Generate Bill
                     2. View All Bills
-                    3. View Bill by ID
+                    3. View Bill details(Bill ID)
                     4. View Bill by Customer Name
                     0. Back
                     """);
