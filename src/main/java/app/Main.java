@@ -1,9 +1,7 @@
 package app;
 
-import menu.BillingMenu;
-import menu.MedicineMenu;
-import menu.CustomerMenu;
-import menu.SupplierMenu;
+import menu.*;
+
 import java.util.Scanner;
 
 public class Main {
@@ -12,6 +10,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
+        ReportMenu reportMenu = new ReportMenu();
         MedicineMenu medicineMenu = new MedicineMenu();
         CustomerMenu customerMenu = new CustomerMenu();
         SupplierMenu supplierMenu = new SupplierMenu();
@@ -26,6 +25,7 @@ public class Main {
                     2. Supplier Management
                     3. Customer Management
                     4. Billing Management
+                    5. Reports
                     0. Back
                     """);
 
@@ -50,8 +50,14 @@ public class Main {
                     billingMenu.showMenu();
                     break;
 
+                case 5:
+                    reportMenu.showMenu();
+                    break;
+
                 case 0:
-                    System.out.println("Thank you for using Medical Store Management System!");
+                    System.out.println("Thank you");
+                    System.exit(0);
+                    break;
 
                 default:
                     System.out.print("Invalid Choice!");

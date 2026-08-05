@@ -113,7 +113,7 @@ public class BillingService {
         System.out.println("=================================");
         System.out.println("Total Amount : ₹" + totalAmount);
         System.out.println("Discount    : ₹" + discount);
-        System.out.println("Final Amount: ₹" + finalAmount);
+        System.out.println("Final Amount : ₹" + finalAmount);
         System.out.println("=================================");
 
         Bill bill = new Bill(
@@ -218,10 +218,10 @@ public class BillingService {
         System.out.println("Bill ID : " +bill.getBillId());
         System.out.println("Bill Date : " +bill.getBillDate());
         System.out.println("Customer ID : " +bill.getCustomerId());
-        System.out.println("User ID :" +bill.getUserId());
+        System.out.println("User ID : " +bill.getUserId());
         System.out.println("Total Amount : " +bill.getTotalAmount());
         System.out.println("Discount : " +bill.getDiscount());
-        System.out.println("Final Amount :" +bill.getFinalAmount());
+        System.out.println("Final Amount : " +bill.getFinalAmount());
 
         List<BillItem> billItems = billDAO.getBillItems(billId);
 
@@ -254,7 +254,7 @@ public class BillingService {
 
     public void viewBillByCustomerName(){
 
-        System.out.println("Enter Customer Name : ");
+        System.out.print("Enter Customer Name : ");
         String customerName = scanner.nextLine();
 
         List<Bill> billList = billDAO.searchBillByCustomerName(customerName);
