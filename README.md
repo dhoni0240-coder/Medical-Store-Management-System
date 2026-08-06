@@ -6,63 +6,89 @@ A Java-based console application developed to automate the daily operations of a
 
 # 📖 Overview
 
-The Medical Store Management System is designed to simplify medical store operations by providing an efficient way to manage medicines, suppliers, customers, billing, and inventory.
+The Medical Store Management System is designed to simplify medical store operations by providing an efficient way to manage medicines, suppliers, customers, billing, inventory, and sales.
 
-This project follows a layered architecture using Java, JDBC, and MySQL, making it easy to maintain and extend.
+This project follows a layered architecture using Java, JDBC, and MySQL, making it easy to maintain, scale, and extend.
 
 ---
 
 # ✨ Features
 
 ## ✅ Medicine Management
+
 - View All Medicines
 - Add New Medicine
 - Update Medicine
 - Delete Medicine
 - Search Medicine by:
-    - ID
-    - Name
-    - Category
-    - Formula
-    - Batch Number
+  - ID
+  - Name
+  - Category
+  - Formula
+  - Batch Number
 
 ---
 
 ## ✅ Supplier Management
+
 - View All Suppliers
 - Add Supplier
 - Update Supplier
 - Delete Supplier
 - Search Supplier by:
-    - ID
-    - Name
-    - Phone Number
+  - ID
+  - Name
+  - Phone Number
 
 ---
 
 ## ✅ Customer Management
+
 - View All Customers
 - Add Customer
 - Update Customer
 - Delete Customer
 - Search Customer by:
-    - ID
-    - Name
-    - Phone Number
-    - Email
+  - ID
+  - Name
+  - Phone Number
+  - Email
 
 ---
 
-## 🚧 Upcoming Features
+## ✅ Billing System
 
-- Billing System
-- Invoice Generation
-- Sales History
-- Stock History
-- Low Stock Alert
-- Expiry Date Tracking
-- Reports & Analytics
-- User Authentication
+- Generate Bills
+- Multiple Medicine Billing
+- Automatic Stock Update
+- Discount Calculation
+- Bill Item Management
+
+---
+
+## ✅ Bill History
+
+- View All Bills
+- View Bill by Bill ID
+- Search Bills by Customer Name
+- View Purchased Medicines for Each Bill
+
+---
+
+## ✅ Inventory Reports
+
+- Low Stock Medicines
+- Out of Stock Medicines
+- Expiring Medicines (Next 30 Days)
+
+---
+
+## ✅ Sales Reports
+
+- Daily Sales Report
+- Monthly Sales Report
+- Top Selling Medicines
+- Profit Report
 
 ---
 
@@ -80,10 +106,13 @@ This project follows a layered architecture using Java, JDBC, and MySQL, making 
 
 # 🏗 Project Structure
 
-```
+```text
 Medical-Store-Management-System
 │
 ├── src
+│   ├── app
+│   │     Main.java
+│   │
 │   ├── config
 │   │     DatabaseConnection.java
 │   │
@@ -91,22 +120,36 @@ Medical-Store-Management-System
 │   │     Medicine.java
 │   │     Supplier.java
 │   │     Customer.java
+│   │     Bill.java
+│   │     BillItem.java
+│   │    
 │   │
 │   ├── dao
 │   │     MedicineDAO.java
 │   │     SupplierDAO.java
 │   │     CustomerDAO.java
+│   │     BillingDAO.java
+│   │     ReportDAO.java
+│   │
+│   ├── service
+│   │     MedicineService.java
+│   │     SupplierService.java
+│   │     CustomerService.java
+│   │     BillingService.java
+│   │     ReportService.java
 │   │
 │   ├── menu
 │   │     MedicineMenu.java
 │   │     SupplierMenu.java
 │   │     CustomerMenu.java
+│   │     BillingMenu.java
+│   │     ReportsMenu.java
 │   │
-│   └── Main.java
+│   └── exception
 │
-├── pom.xml
 ├── schema.sql
 ├── sample-data.sql
+├── pom.xml
 └── README.md
 ```
 
@@ -123,13 +166,12 @@ Current Database Tables:
 - bill_items
 - stock_history
 - sales_history
-- users
 
 ---
 
 # 🚀 Current Progress
 
-## ✅ Version 1.0 Completed
+## ✅ Version 2.0 (Current)
 
 ✔ Medicine Module
 
@@ -137,22 +179,26 @@ Current Database Tables:
 
 ✔ Customer Module
 
+✔ Billing Module
+
+✔ Bill History
+
+✔ Inventory Reports
+
+✔ Sales Reports
+
 ---
 
 # 📌 Roadmap
 
-## Version 1.1
-- Billing Module
-- Invoice Generation
-- Automatic Stock Update
+## Next Version
 
-## Version 1.2
-- Sales History
-- Stock History
-- Reports
-
-## Version 2.0
-- Complete Medical Store Management System
+- Purchase Module
+- Dashboard
+- Invoice PDF Generation
+- Admin & Cashier Roles
+- Sales Dashboard
+- Backup & Restore
 
 ---
 
@@ -164,17 +210,21 @@ Current Database Tables:
 - DAO Design Pattern
 - CRUD Operations
 - Search Operations
-- Java Collections
+- Java Collections Framework
 - Exception Handling
 - Layered Architecture
+- SQL JOIN
+- GROUP BY
+- Aggregate Functions (SUM, COUNT)
+- Report Generation
 
 ---
 
 # 🚧 Project Status
 
-🟢 **Version 1.0 Released**
+🟢 **Version 2.0 In Development**
 
-Current Progress: **Approximately 50% Complete**
+Current Progress: **Approximately 85% Complete**
 
 ---
 
@@ -184,6 +234,6 @@ Current Progress: **Approximately 50% Complete**
 
 B.Tech Computer Science Engineering
 
-Java Backend Developer (Learning)
+Aspiring Java Backend Developer
 
 GitHub: https://github.com/dhoni0240-coder
