@@ -42,19 +42,19 @@ public class ReportMenu{
                     break;
 
                 case 4:
-                    System.out.println("Coming Soon...");
+                    reportService.dailySalesReport();
                     break;
 
                 case 5:
-                    System.out.println("Coming Soon...");
+                    reportService.monthlySalesReport();
                     break;
 
                 case 6:
-                    System.out.println("Coming Soon...");
+                    reportService.topSellingMedicines();
                     break;
 
                 case 7:
-                    System.out.println("Coming Soon...");
+                    reportService.profitReport();
                     break;
 
                 case 0:
