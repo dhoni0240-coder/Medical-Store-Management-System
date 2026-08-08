@@ -1,102 +1,461 @@
-# Software Requirement Specification(SRS)
+# Software Requirements Specification (SRS)
 
 # Medical Store Management System
 
-## 1. Introduction
+**Version:** 3.0  
+**Status:** In Development  
+**Technology:** Java, JDBC, MySQL  
+**Application Type:** Console-based Application
 
-### 1.1 Purpose
-The purpose of this project is to automate the operations of a medical store by managing medicines, customers, suppliers, billing, inventory and reports.
+---
 
-### 1.2 Scope
-The system will provide an efficient and user-friendly solution for managing medical store operations. It will reduce manual work and improve accuracy.
+# 1. Introduction
 
-### 1.3 Objectives
+## 1.1 Purpose
 
-- Reduce Paperwork
-- Manage medicine inventory
-- Track expiry dates
-- Generate bills 
-- Generate reports
-- Improve stock management
+The Medical Store Management System is a Java-based console application designed to automate and manage the daily operations of a medical store.
 
-## 2. Users
+The system provides functionality for:
 
-- Administrator
-- Store Employee
+- Medicine management
+- Supplier management
+- Customer management
+- Billing
+- Bill history
+- Inventory monitoring
+- Sales reporting
+- Profit analysis
+- Purchase and stock management
 
-## 3. Functional Requirements
+The system uses Java for application logic, JDBC for database connectivity, and MySQL for data storage.
 
-- Login
-- Medicine Management
-- Supplier Management
-- Customer Management
-- Inventory Management
-- Billing 
-- Sales Reports
+---
 
-## 4. Non-Functional Requirement
+# 2. Objectives
 
-- Security
-- Reliability
-- Performance
-- Usability
+The main objectives of the system are:
 
-# 5. Functional Requirements
+- Manage medicines efficiently.
+- Maintain supplier information.
+- Maintain customer information.
+- Generate customer bills.
+- Automatically update medicine stock after sales.
+- Maintain bill history.
+- Search previous bills.
+- Monitor low-stock and out-of-stock medicines.
+- Track medicines approaching expiry.
+- Generate sales reports.
+- Identify top-selling medicines.
+- Calculate store profit.
+- Manage medicine purchases from suppliers.
+- Automatically increase stock after purchases.
+- Maintain purchase history.
 
-## 5.1 User Authentication
+---
 
-- User Login
-- User Logout
-- Change Password
+# 3. Scope
 
-## 5.2 Medicine Management
+The system is intended for small and medium-sized medical stores.
 
-- Add Medicine
-- Update Medicine
-- Delete Medicine 
-- Search Medicine
-- View All Medicines
+The application currently supports:
 
-## 5.3 Supplier Management
+- Medicine management
+- Supplier management
+- Customer management
+- Billing
+- Bill history
+- Inventory reports
+- Sales reports
+- Profit reports
 
-- Add Supplier
-- Update Supplier 
-- Delete Supplier
-- Search Supplier
+Version 3.0 expands the system with:
 
-## 5.4 Customer Management
+- Purchase management
+- Purchase history
+- Stock entry
+- Supplier purchase tracking
 
-- Add Customer
-- Search Customer
-- Customer Purchase History
+Future versions will introduce:
 
-## 5.5 Inventory Management
+- User authentication
+- Admin and Cashier roles
+- Dashboard
+- PDF invoice generation
+- Data export
+- Backup and restore
+- GUI/Web interface
 
-- Add Stock
-- Update Stock
-- Low Stock Alert
-- Expiry Alert
+---
 
-## 5.6 Billing System
+# 4. Functional Requirements
 
-- Create Bill
-- Print Bill
-- GST Calculation
+## 4.1 Medicine Management
+
+### FR-MED-01
+The system shall allow users to add a new medicine.
+
+### FR-MED-02
+The system shall allow users to view all medicines.
+
+### FR-MED-03
+The system shall allow users to update medicine information.
+
+### FR-MED-04
+The system shall allow users to delete medicines.
+
+### FR-MED-05
+The system shall allow users to search medicines by:
+
+- Medicine ID
+- Medicine Name
+- Category
+- Formula
+- Batch Number
+
+### FR-MED-06
+The system shall maintain medicine stock quantity.
+
+### FR-MED-07
+The system shall store medicine expiry and manufacturing dates.
+
+---
+
+# 5. Supplier Management
+
+### FR-SUP-01
+The system shall allow users to add suppliers.
+
+### FR-SUP-02
+The system shall allow users to view all suppliers.
+
+### FR-SUP-03
+The system shall allow users to update supplier information.
+
+### FR-SUP-04
+The system shall allow users to delete suppliers.
+
+### FR-SUP-05
+The system shall allow users to search suppliers by:
+
+- Supplier ID
+- Supplier Name
+- Phone Number
+
+---
+
+# 6. Customer Management
+
+### FR-CUS-01
+The system shall allow users to add customers.
+
+### FR-CUS-02
+The system shall allow users to view all customers.
+
+### FR-CUS-03
+The system shall allow users to update customer information.
+
+### FR-CUS-04
+The system shall allow users to delete customers.
+
+### FR-CUS-05
+The system shall allow users to search customers by:
+
+- Customer ID
+- Customer Name
+- Phone Number
+- Email
+
+---
+
+# 7. Billing Management
+
+### FR-BIL-01
+The system shall allow users to create a new bill.
+
+### FR-BIL-02
+The system shall allow multiple medicines to be added to a bill.
+
+### FR-BIL-03
+The system shall calculate the subtotal for each medicine.
+
+### FR-BIL-04
+The system shall calculate the total bill amount.
+
+### FR-BIL-05
+The system shall allow discounts to be applied.
+
+### FR-BIL-06
+The system shall calculate the final payable amount.
+
+### FR-BIL-07
+The system shall automatically reduce medicine stock after successful billing.
+
+### FR-BIL-08
+The system shall store bill information in the database.
+
+### FR-BIL-09
+The system shall store individual bill items.
+
+---
+
+# 8. Bill History
+
+### FR-HIS-01
+The system shall allow users to view previous bills.
+
+### FR-HIS-02
+The system shall allow users to search bills using Bill ID.
+
+### FR-HIS-03
+The system shall allow users to search previous bills using Customer Name.
+
+### FR-HIS-04
+The system shall display purchased medicines associated with a bill.
+
+### FR-HIS-05
+The system shall display:
+
+- Bill ID
+- Bill Date
+- Customer
+- User
+- Total Amount
 - Discount
-- Payment
+- Final Amount
+- Purchased Medicines
 
-## 5.7 Reports
+---
 
-- Daily Sales
-- Monthly Sales
-- Expiry Medicines 
-- Low Stock Reports
+# 9. Inventory Reports
 
-# 6. Non-Functional Requirements
+### FR-INV-01
+The system shall identify medicines with low stock.
 
-- Easy to use
-- Fast Response Time
-- Security Login
-- Reliable Data Storage
-- Maintainable Code
-- Scalable Design
+### FR-INV-02
+The system shall identify medicines that are out of stock.
+
+### FR-INV-03
+The system shall identify medicines expiring within the next 30 days.
+
+### FR-INV-04
+The system shall display relevant medicine information such as:
+
+- Medicine ID
+- Medicine Name
+- Quantity
+- Rack Number
+- Expiry Date
+
+---
+
+# 10. Sales Reports
+
+### FR-SAL-01
+The system shall generate a daily sales report.
+
+### FR-SAL-02
+The system shall display the total sales amount for the selected day.
+
+### FR-SAL-03
+The system shall generate a monthly sales report.
+
+### FR-SAL-04
+The system shall display total bills for the selected month.
+
+### FR-SAL-05
+The system shall display total sales for the selected month.
+
+### FR-SAL-06
+The system shall identify the top-selling medicines.
+
+### FR-SAL-07
+The system shall calculate total revenue.
+
+### FR-SAL-08
+The system shall calculate total purchase cost.
+
+### FR-SAL-09
+The system shall calculate net profit.
+
+---
+
+# 11. Purchase Management — Version 3.0
+
+## 11.1 Purchase Creation
+
+### FR-PUR-01
+The system shall allow users to create a new medicine purchase.
+
+### FR-PUR-02
+The system shall allow users to select a supplier for a purchase.
+
+### FR-PUR-03
+The system shall allow multiple medicines to be added to a purchase.
+
+### FR-PUR-04
+The system shall record the quantity purchased for each medicine.
+
+### FR-PUR-05
+The system shall record the purchase price of each medicine.
+
+### FR-PUR-06
+The system shall calculate the subtotal for each purchased medicine.
+
+### FR-PUR-07
+The system shall calculate the total purchase amount.
+
+---
+
+# 12. Stock Entry — Version 3.0
+
+### FR-STK-01
+The system shall increase medicine stock after a successful purchase.
+
+### FR-STK-02
+The system shall update the existing quantity in the medicines table.
+
+### FR-STK-03
+The system shall maintain the relationship between a purchase and its purchased medicines.
+
+### FR-STK-04
+The system shall prevent incomplete stock updates if a purchase transaction fails.
+
+---
+
+# 13. Purchase History — Version 3.0
+
+### FR-PH-01
+The system shall store completed purchases.
+
+### FR-PH-02
+The system shall allow users to view previous purchases.
+
+### FR-PH-03
+The system shall display purchase details including:
+
+- Purchase ID
+- Supplier
+- Purchase Date
+- Total Amount
+
+### FR-PH-04
+The system shall display individual medicines included in a purchase.
+
+### FR-PH-05
+The system shall allow purchase records to be searched by Purchase ID.
+
+---
+
+# 14. Future Authentication Requirements
+
+The following requirements are planned for a future version.
+
+### FR-AUTH-01
+The system shall provide user login functionality.
+
+### FR-AUTH-02
+The system shall authenticate users using username and password.
+
+### FR-AUTH-03
+The system shall support different user roles.
+
+Planned roles:
+
+- Admin
+- Cashier
+
+### FR-AUTH-04
+The system shall restrict access to selected features according to user role.
+
+### FR-AUTH-05
+The system shall provide a logout option.
+
+---
+
+# 15. Future Dashboard Requirements
+
+The dashboard is planned for a future version.
+
+The dashboard may display:
+
+- Today's Sales
+- Today's Bills
+- Total Medicines
+- Low Stock Medicines
+- Out-of-Stock Medicines
+- Expiring Medicines
+- Today's Profit
+
+---
+
+# 16. Database Requirements
+
+The system uses MySQL as the relational database.
+
+Current tables include:
+
+- users
+- medicines
+- suppliers
+- customers
+- bills
+- bill_items
+- stock_history
+- sales_history
+
+Version 3.0 will introduce:
+
+- purchases
+- purchase_items
+
+---
+
+# 17. Non-Functional Requirements
+
+## 17.1 Performance
+
+The system should return database queries within a reasonable amount of time for a small or medium-sized medical store.
+
+## 17.2 Reliability
+
+The system should prevent inconsistent stock updates during billing and purchasing operations.
+
+## 17.3 Maintainability
+
+The application should follow layered architecture and separate:
+
+- Model
+- DAO
+- Service
+- Menu
+
+components.
+
+## 17.4 Usability
+
+The console interface should provide clear menus, instructions, and error messages.
+
+## 17.5 Security
+
+Database credentials should not be exposed in public repositories.
+
+Future authentication functionality should securely handle user credentials.
+
+---
+
+# 18. Architecture
+
+The application follows a layered architecture:
+
+```text
+User
+  ↓
+Menu
+  ↓
+Service
+  ↓
+DAO
+  ↓
+JDBC
+  ↓
+MySQL Database
