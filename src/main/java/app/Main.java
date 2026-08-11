@@ -15,6 +15,7 @@ public class Main {
         CustomerMenu customerMenu = new CustomerMenu();
         SupplierMenu supplierMenu = new SupplierMenu();
         BillingMenu billingMenu = new BillingMenu();
+        PurchaseMenu purchaseMenu = new PurchaseMenu(scanner);
 
         while (true) {
             System.out.println("""
@@ -26,6 +27,7 @@ public class Main {
                     3. Customer Management
                     4. Billing Management
                     5. Reports
+                    6. Purchase Management
                     0. Back
                     """);
 
@@ -52,6 +54,10 @@ public class Main {
 
                 case 5:
                     reportMenu.showMenu();
+                    break;
+
+                case 6:
+                    purchaseMenu.showMenu();
                     break;
 
                 case 0:

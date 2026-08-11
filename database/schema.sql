@@ -93,6 +93,29 @@ sale_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 FOREIGN KEY(medicine_id) REFERENCES medicines(medicine_id)
 );
 
+CREATE TABLE purchases(
+purchase_id INT PRIMARY KEY AUTO_INCREMENT,
+supplier_id INT NOT NULL,
+user_id INT NOT NULL,
+purchase_date DATE NOT NULL,
+total_amount DECIMAL(10,2) NOT NULL,
+
+FOREIGN KEY(supplier_id) REFERENCES suppliers(supplier_id),
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE purchase_items(
+purchase_item_id INT PRIMARY KEY AUTO_INCREMENT,
+purchase_id INT NOT NULL,
+medicine_id INT NOT NULL,
+quantity INT NOT NULL,
+purchase_price DECIMAL(10,2) NOT NULL,
+subtotal DECIMAL(10,2) NOT NULL,
+
+FOREIGN KEY(purchase_id) REFERENCES purchases(purchase_id),
+    FOREIGN KEY(medicine_id) REFERENCES medicines(medicine_id)
+);
+
 SHOW TABLES;
 DESC bill_items;
 DESC bills;
@@ -102,3 +125,5 @@ DESC sales_history;
 DESC stock_history;
 DESC suppliers;
 DESC users;
+DESC purchases;
+DESC purchase_items;
