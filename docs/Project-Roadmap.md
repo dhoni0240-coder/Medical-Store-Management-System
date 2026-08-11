@@ -9,7 +9,7 @@ v2.0 ✅ Completed
 ├── Inventory Reports
 └── Sales Reports
 
-v3.0 🚧 In Progress
+v3.0 ✅ Completed
 ├── Purchase Module
 ├── Purchase History
 ├── Stock Entry
