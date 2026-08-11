@@ -166,12 +166,14 @@ Current Database Tables:
 - bill_items
 - stock_history
 - sales_history
+- purchases
+- purchase_items
 
 ---
 
 # 🚀 Current Progress
 
-## ✅ Version 2.0 (Current)
+## ✅ Version 3.0 (Current)
 
 ✔ Medicine Module
 
@@ -187,20 +189,58 @@ Current Database Tables:
 
 ✔ Sales Reports
 
+✔ Purchase Management
+
+✔ Purchase History
+
+✔ Purchase Details
+
+✔ Automatic Stock Update
+
+✔ Database Transaction Management for Purchases
+
 ---
 
 # 📌 Roadmap
 
-## Next Version
+## 🔐 Version 3.1 — User Authentication & Access Control
 
-- Purchase Module
-- Dashboard
-- Invoice PDF Generation
-- Admin & Cashier Roles
-- Sales Dashboard
-- Backup & Restore
+- [ ] User Login System
+- [ ] Username & Password Validation
+- [ ] User Session Management
+- [ ] Logout
+- [ ] Admin & Cashier Roles
+- [ ] Role-Based Access Control
 
 ---
+
+## 🧾 Version 3.2 — Invoice & Document Management
+
+- [ ] Invoice Generation
+- [ ] PDF Invoice Generation
+- [ ] Printable Invoice
+- [ ] Purchase Invoice
+
+---
+
+## 💾 Version 3.3 — Backup & Security
+
+- [ ] Database Backup
+- [ ] Database Restore
+- [ ] Password Security
+- [ ] Input Validation
+- [ ] Improved Exception Handling
+
+---
+
+## 🚀 Version 4.0 — Production Ready
+
+- [ ] Complete Admin Dashboard
+- [ ] Cashier Dashboard
+- [ ] Advanced Reports
+- [ ] Performance Optimization
+- [ ] Final Testing
+- [ ] Production Release
 
 # 📚 Concepts Implemented
 
@@ -222,9 +262,9 @@ Current Database Tables:
 
 # 🚧 Project Status
 
-🟢 **Version 2.0 In Development**
+🟢 **Version 3.1 In Development**
 
-Current Progress: **Approximately 85% Complete**
+Current Progress: **Approximately 65% Complete**
 
 ---
 

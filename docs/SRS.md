@@ -2,7 +2,7 @@
 
 # Medical Store Management System
 
-**Version:** 3.0  
+**Version:** 3.1  
 **Status:** In Development  
 **Technology:** Java, JDBC, MySQL  
 **Application Type:** Console-based Application
@@ -67,22 +67,27 @@ The application currently supports:
 - Inventory reports
 - Sales reports
 - Profit reports
-
-Version 3.0 expands the system with:
-
 - Purchase management
 - Purchase history
 - Stock entry
 - Supplier purchase tracking
 
+## Version 3.1 Development Scope
+
+Version 3.1 focuses on:
+
+- User Authentication
+- Username and Password Validation
+- User Session Management
+- Logout
+- Admin and Cashier Roles
+- Role-Based Access Control
+
 Future versions will introduce:
 
-- User authentication
-- Admin and Cashier roles
-- Dashboard
 - PDF invoice generation
 - Data export
-- Backup and restore
+- Database backup and restore
 - GUI/Web interface
 
 ---
@@ -279,7 +284,7 @@ The system shall calculate net profit.
 
 ---
 
-# 11. Purchase Management — Version 3.0
+# 11. Purchase Management — Completed
 
 ## 11.1 Purchase Creation
 
@@ -306,7 +311,7 @@ The system shall calculate the total purchase amount.
 
 ---
 
-# 12. Stock Entry — Version 3.0
+# 12. Stock Entry — Completed
 
 ### FR-STK-01
 The system shall increase medicine stock after a successful purchase.
@@ -322,7 +327,7 @@ The system shall prevent incomplete stock updates if a purchase transaction fail
 
 ---
 
-# 13. Purchase History — Version 3.0
+# 13. Purchase History — Completed
 
 ### FR-PH-01
 The system shall store completed purchases.
@@ -346,7 +351,7 @@ The system shall allow purchase records to be searched by Purchase ID.
 
 ---
 
-# 14. Future Authentication Requirements
+# 14. Version 3.1 Authentication Requirements
 
 The following requirements are planned for a future version.
 
@@ -402,9 +407,6 @@ Current tables include:
 - bill_items
 - stock_history
 - sales_history
-
-Version 3.0 will introduce:
-
 - purchases
 - purchase_items
 
@@ -443,7 +445,33 @@ Future authentication functionality should securely handle user credentials.
 
 ---
 
-# 18. Architecture
+# 18. Project Status
+
+## Completed Modules
+
+- [x] Medicine Management
+- [x] Supplier Management
+- [x] Customer Management
+- [x] Billing Management
+- [x] Bill History
+- [x] Inventory Reports
+- [x] Sales Reports
+- [x] Profit Analysis
+- [x] Purchase Management
+- [x] Purchase History
+- [x] Purchase Details
+- [x] Automatic Stock Update
+- [x] Purchase Transaction Management
+
+## Current Development
+
+- [ ] User Authentication
+- [ ] Login System
+- [ ] Admin & Cashier Roles
+- [ ] Role-Based Access Control
+- [ ] Logout
+
+# 19. Architecture
 
 The application follows a layered architecture:
 
