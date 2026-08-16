@@ -28,6 +28,7 @@ public class DatabaseConnection{
             return connection;
 
         }catch(SQLException e){
+
             System.out.println("Connection Failed! Check output console");
             e.printStackTrace();
             return null;

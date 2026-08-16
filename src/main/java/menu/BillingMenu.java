@@ -2,11 +2,21 @@ package menu;
 
 import service.BillingService;
 import java.util.Scanner;
+import model.User;
 
 public class BillingMenu {
 
-    private final BillingService billingService = new BillingService();
-    private final Scanner scanner = new Scanner(System.in);
+    private final BillingService billingService;
+    private final Scanner scanner;
+    private final User loggedInUser;
+
+    public BillingMenu(Scanner scanner, User loggedInUser){
+
+        this.scanner = scanner;
+        this.loggedInUser = loggedInUser;
+        this.billingService = new BillingService();
+
+    }
 
     public void showMenu() {
 
@@ -30,7 +40,7 @@ public class BillingMenu {
             switch (choice) {
 
                 case 1:
-                    billingService.generateBill();
+                    billingService.generateBill(loggedInUser);
                     break;
 
                 case 2:

@@ -7,6 +7,7 @@ import model.BillItem;
 import model.Customer;
 import model.Medicine;
 import model.Bill;
+import model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class BillingService {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public void generateBill() {
+    public void generateBill(User loggedInUser) {
 
         // Customer Selection
         System.out.print("Enter Customer ID : ");
@@ -120,7 +121,7 @@ public class BillingService {
                 0,
                 null,
                 customer.getCustomerId(),
-                1,
+                loggedInUser.getUser_id(),
                 totalAmount,
                 discount,
                 finalAmount

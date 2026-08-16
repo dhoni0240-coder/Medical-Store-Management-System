@@ -3,6 +3,7 @@ package menu;
 import model.Purchase;
 import model.PurchaseItem;
 import service.PurchaseService;
+import model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +12,13 @@ import java.util.Scanner;
 public class PurchaseMenu{
 
     private final Scanner scanner;
+    private final User loggedInUser;
     private final PurchaseService purchaseService;
 
-    public PurchaseMenu(Scanner scanner){
+    public PurchaseMenu(Scanner scanner, User loggedInUser){
 
         this.scanner = scanner;
+        this.loggedInUser = loggedInUser;
         this.purchaseService = new PurchaseService();
 
     }
@@ -69,10 +72,6 @@ public class PurchaseMenu{
         int supplierId = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("Enter User ID : ");
-        int userId = scanner.nextInt();
-        scanner.nextLine();
-
         List<PurchaseItem> purchaseItems = new ArrayList<>();
 
         while(true){
@@ -105,7 +104,7 @@ public class PurchaseMenu{
                 break;
             }
         }
-        int purchaseId = purchaseService.createPurchase(supplierId, userId, purchaseItems);
+        int purchaseId = purchaseService.createPurchase(supplierId,loggedInUser.getUser_id(), purchaseItems);
         if(purchaseId == -1){
             System.out.println("\nPurchase creation failed!");
         }
