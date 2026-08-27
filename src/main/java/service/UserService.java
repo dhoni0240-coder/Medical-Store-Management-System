@@ -33,4 +33,26 @@ public class UserService{
     public List<User> getAllUsers(){
         return userDAO.getAllUsers();
     }
+
+    //Add new users
+    public boolean addUser(User user){
+        if(user.getFull_name() == null || user.getFull_name().trim().isEmpty()){
+            System.out.println("Full name cannot be empty !");
+            return false;
+        }
+        if(user.getUsername() == null || user.getUsername().trim().isEmpty()){
+            System.out.println("Username cannot be Empty!");
+            return false;
+        }
+        if(user.getPassword() == null || user.getPassword().isEmpty()){
+            System.out.println("Password cannot be empty!");
+            return false;
+        }
+        if(user.getRole() == null ||
+                (!user.getRole().equals("ADMIN") && !user.getRole().equals("PHARMACIST") && !user.getRole().equals("STAFF"))){
+            System.out.println("Invalid Role!");
+            return false;
+        }
+        return userDAO.addUser(user);
+    }
 }

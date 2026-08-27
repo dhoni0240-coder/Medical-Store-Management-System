@@ -21,6 +21,7 @@ public class UserMenu{
                 ------------ USER MANAGEMENT ------------
                 =========================================
                 1. View All Users
+                2. Add new User
                 0. Back
                 """);
             System.out.print("Enter your choice : ");
@@ -32,12 +33,87 @@ public class UserMenu{
                     viewAllUsers();
                     break;
 
+                case 2:
+                    addUser();
+                    break;
+
                 case 0:
                     return;
 
                 default :
                     System.out.println("Invalid choice");
             }
+        }
+    }
+    //Add New User
+    private void addUser(){
+        System.out.println("""
+                ===================================================
+                ----------------------ADD USERS--------------------
+                ===================================================
+                """);
+        System.out.print("Enter Full Name : ");
+        String fullName = scanner.nextLine();
+
+        System.out.print("Enter Username : ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter Password : ");
+        String password = scanner.nextLine();
+
+        System.out.println("""
+                Select Role :
+                1. ADMIN
+                2. PHARMACIST
+                3. STAFF
+                """);
+
+        System.out.print("Enter Role : ");
+        int roleChoice = scanner.nextInt();
+        scanner.nextLine();
+
+        String role;
+
+        switch(roleChoice){
+            case 1:
+                role = "ADMIN";
+                break;
+
+            case 2:
+                role = "PHARMACIST";
+                break;
+
+            case 3:
+                role = "STAFF";
+                break;
+
+            default :
+                System.out.println("Invalid Choice");
+                return;
+        }
+
+        System.out.print("Enter Phone Number : ");
+        String phoneNumber = scanner.nextLine();
+
+        System.out.print("Enter Email Address : ");
+        String emailAddress = scanner.nextLine();
+
+        User user = new User(
+                0,
+                fullName,
+                username,
+                password,
+                role,
+                phoneNumber,
+                emailAddress,
+                null
+        );
+        boolean added = userService.addUser(user);
+
+        if (added) {
+            System.out.println("\nUser added successfully!");
+        } else {
+            System.out.println("\nFailed to add user!");
         }
     }
 
