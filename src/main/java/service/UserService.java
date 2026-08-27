@@ -2,6 +2,7 @@ package service;
 
 import model.User;
 import dao.UserDAO;
+import java.util.List;
 
 public class UserService{
 
@@ -27,5 +28,9 @@ public class UserService{
                 username.trim(),
                 password);
 
+    }
+    //View all Users
+    public List<User> getAllUsers(){
+        return userDAO.getAllUsers();
     }
 }

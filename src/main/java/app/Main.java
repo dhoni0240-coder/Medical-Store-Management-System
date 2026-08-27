@@ -25,6 +25,7 @@ public class Main {
         SupplierMenu supplierMenu = new SupplierMenu();
         BillingMenu billingMenu = new BillingMenu(scanner, loggedInUser);
         PurchaseMenu purchaseMenu = new PurchaseMenu(scanner, loggedInUser);
+        UserMenu userMenu = new UserMenu(scanner);
 
         boolean logout = false;
 
@@ -42,6 +43,7 @@ public class Main {
                     5. Reports
                     6. Purchase Management
                     7. Logout
+                    8. User Management
                     0. Exit
                     """.formatted(
                             loggedInUser.getFull_name(),
@@ -85,6 +87,13 @@ public class Main {
                         loggedInUser = loginMenu.login();
                     }
                     break;
+
+                case 8:
+                    if("ADMIN".equals(loggedInUser.getRole())){
+                        userMenu.showMenu();
+                    }else{
+                        System.out.println("\nAccess denied! Only Admin can access User Management");
+                    }
 
                 case 0:
                     System.out.println("Thank you for using our application!");
