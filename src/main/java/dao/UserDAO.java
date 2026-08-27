@@ -84,4 +84,36 @@ public class UserDAO{
         }
         return userList;
     }
+    //Add Users
+    public boolean addUser(User user){
+        String sql = """
+                INSERT INTO users
+                (full_name, username, password, role, phone, email)
+                VALUES(?,?,?,?,?,?)
+                """;
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)
+                ){
+            preparedStatement.setString(1, user.getFull_name());
+            preparedStatement.setString(2, user.getUsername());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(4, user.getRole());
+            preparedStatement.setString(5, user.getPhone());
+            preparedStatement.setString(6, user.getEmail());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            return rowsAffected > 0;
+
+        }catch(SQLException e){
+            System.out.println("Error fetching users!");
+            if(e.getMessage().contains("Duplicate")){
+                System.out.println("Username already exists!");
+            }else{
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
 }
