@@ -2,6 +2,7 @@ package menu;
 
 import dao.CustomerDAO;
 import model.Customer;
+import model.User;
 
 import java.util.List;
 import java.util.Scanner;
@@ -9,7 +10,13 @@ import java.util.Scanner;
 public class CustomerMenu{
 
     private final CustomerDAO customerDAO = new CustomerDAO();
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+    private final User loggedInUser;
+
+    public CustomerMenu(Scanner scanner, User loggedInUser){
+        this.scanner = scanner;
+        this.loggedInUser = loggedInUser;
+    }
 
     public void showMenu(){
         while(true){
@@ -35,15 +42,27 @@ public class CustomerMenu{
                     break;
 
                 case 2:
-                    addCustomer();
+                    if(isAdmin() || isPharmacist()){
+                        addCustomer();
+                    }else{
+                        accessDenied();
+                    }
                     break;
 
                 case 3:
-                    updateCustomer();
+                    if(isAdmin() || isPharmacist()){
+                        updateCustomer();
+                    }else{
+                        accessDenied();
+                    }
                     break;
 
                 case 4:
-                    deleteCustomer();
+                    if(isAdmin()){
+                        deleteCustomer();
+                    }else{
+                        accessDenied();
+                    }
                     break;
 
                 case 5:
@@ -58,6 +77,15 @@ public class CustomerMenu{
                     System.out.println("Invalid Choice");
             }
         }
+    }
+    private boolean isAdmin(){
+        return "ADMIN".equals(loggedInUser.getRole());
+    }
+    private boolean isPharmacist(){
+        return "PHARMACIST".equals(loggedInUser.getRole());
+    }
+    private void accessDenied(){
+        System.out.println("\nAccess denied! You do not have permission to perform this action.");
     }
 
     //View All Customer

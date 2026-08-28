@@ -19,7 +19,11 @@ public class BillingService {
     private final CustomerDAO customerDAO = new CustomerDAO();
     private final MedicineDAO medicineDAO = new MedicineDAO();
 
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+
+    public BillingService(Scanner scanner){
+        this.scanner = scanner;
+    }
 
     public void generateBill(User loggedInUser) {
 

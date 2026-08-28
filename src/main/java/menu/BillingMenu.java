@@ -14,7 +14,7 @@ public class BillingMenu {
 
         this.scanner = scanner;
         this.loggedInUser = loggedInUser;
-        this.billingService = new BillingService();
+        this.billingService = new BillingService(scanner);
 
     }
 
@@ -44,15 +44,27 @@ public class BillingMenu {
                     break;
 
                 case 2:
-                    billingService.viewAllBills();
+                    if(isAdmin() || isPharmacist()){
+                        billingService.viewAllBills();
+                    }else{
+                        accessDenied();
+                    }
                     break;
 
                 case 3:
-                    billingService.viewBillById();
+                    if(isAdmin() || isPharmacist()){
+                        billingService.viewBillById();
+                    }else{
+                        accessDenied();
+                    }
                     break;
 
                 case 4:
-                    billingService.viewBillByCustomerName();
+                    if (isAdmin() || isPharmacist()) {
+                        billingService.viewBillByCustomerName();
+                    } else {
+                        accessDenied();
+                    }
                     break;
 
                 case 0:
@@ -62,5 +74,14 @@ public class BillingMenu {
                     System.out.println("Invalid Choice!");
             }
         }
+    }
+    private boolean isAdmin(){
+        return "ADMIN".equals(loggedInUser.getRole());
+    }
+    private boolean isPharmacist(){
+        return "PHARMACIST".equals(loggedInUser.getRole());
+    }
+    private void accessDenied(){
+        System.out.println("Access Denied! You do not have permission to perform this action.");
     }
 }

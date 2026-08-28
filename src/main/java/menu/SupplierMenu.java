@@ -2,6 +2,7 @@ package menu;
 
 import dao.SupplierDAO;
 import model.Supplier;
+import model.User;
 
 import java.util.List;
 import java.util.Scanner;
@@ -9,7 +10,14 @@ import java.util.Scanner;
 public class SupplierMenu{
 
     private final SupplierDAO supplierDAO = new SupplierDAO();
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+    private final User loggedInUser;
+
+    public SupplierMenu(Scanner scanner, User loggedInUser){
+        this.scanner = scanner;
+        this.loggedInUser = loggedInUser;
+    }
+
 
     public void showMenu(){
         while(true){
@@ -35,15 +43,27 @@ public class SupplierMenu{
                     break;
 
                 case 2:
-                    addSupplier();
+                    if(isAdmin() || isPharmacist()){
+                        addSupplier();
+                    }else{
+                        accessDenied();
+                    }
                     break;
 
                 case 3:
-                    updateSupplier();
+                    if(isAdmin() || isPharmacist()){
+                        updateSupplier();
+                    }else{
+                        accessDenied();
+                    }
                     break;
 
                 case 4:
-                    deleteSupplier();
+                    if(isAdmin()){
+                        deleteSupplier();
+                    }else{
+                        accessDenied();
+                    }
                     break;
 
                 case 5:
@@ -58,6 +78,15 @@ public class SupplierMenu{
                     System.out.println("Invalid Choice");
             }
         }
+    }
+    private boolean isAdmin(){
+        return "ADMIN".equals(loggedInUser.getRole());
+    }
+    private boolean isPharmacist(){
+        return "PHARMACIST".equals(loggedInUser.getRole());
+    }
+    private void accessDenied(){
+        System.out.println("\nAccess denied! You do not have permission to perform this action.");
     }
 
     //View All Supplier
@@ -324,7 +353,7 @@ public class SupplierMenu{
         }
     }
 
-    //Search by Phone Number
+    //Search by Email Address
     private void searchSupplierByEmail() {
         System.out.println("""
                 =========================
@@ -349,7 +378,7 @@ public class SupplierMenu{
         }
     }
 
-    //Search by Phone Number
+    //Search by Company Name
     private void searchSupplierByCompanyName() {
         System.out.println("""
                 =========================
