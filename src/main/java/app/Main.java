@@ -20,9 +20,9 @@ public class Main {
         }
 
         ReportMenu reportMenu = new ReportMenu();
-        MedicineMenu medicineMenu = new MedicineMenu();
-        CustomerMenu customerMenu = new CustomerMenu();
-        SupplierMenu supplierMenu = new SupplierMenu();
+        MedicineMenu medicineMenu = new MedicineMenu(scanner,loggedInUser);
+        CustomerMenu customerMenu = new CustomerMenu(scanner,loggedInUser);
+        SupplierMenu supplierMenu = new SupplierMenu(scanner,loggedInUser);
         BillingMenu billingMenu = new BillingMenu(scanner, loggedInUser);
         PurchaseMenu purchaseMenu = new PurchaseMenu(scanner, loggedInUser);
         UserMenu userMenu = new UserMenu(scanner);
@@ -72,11 +72,19 @@ public class Main {
                     break;
 
                 case 5:
-                    reportMenu.showMenu();
+                    if("ADMIN".equals(loggedInUser.getRole()) || "PHARMACIST".equals(loggedInUser.getRole())){
+                        reportMenu.showMenu();
+                    }else{
+                        System.out.println("\nAccess denied! Only ADMIN or PHARMACIST can access Reports");
+                    }
                     break;
 
                 case 6:
-                    purchaseMenu.showMenu();
+                    if("ADMIN".equals(loggedInUser.getRole()) || "PHARMACIST".equals(loggedInUser.getRole())){
+                        purchaseMenu.showMenu();
+                    }else{
+                        System.out.println("\nAccess denied! Only ADMIN or PHARMACIST can access Purchase Management");
+                    }
                     break;
 
                 case 7:

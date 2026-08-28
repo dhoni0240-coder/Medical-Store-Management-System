@@ -2,6 +2,7 @@ package menu;
 
 import dao.MedicineDAO;
 import model.Medicine;
+import model.User;
 
 import java.util.List;
 import java.util.Scanner;
@@ -9,8 +10,13 @@ import java.util.Scanner;
 public class MedicineMenu {
 
     private final MedicineDAO medicineDAO = new MedicineDAO();
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner;
+    private final User loggedInUser;
 
+    public MedicineMenu(Scanner scanner, User loggedInUser){
+        this.scanner = scanner;
+        this.loggedInUser = loggedInUser;
+    }
     public void showMenu() {
 
         while (true) {
@@ -36,16 +42,27 @@ public class MedicineMenu {
                     break;
 
                 case 2:
-                    addMedicine();
+                    if(isAdmin() || isPharmacist()){
+                        addMedicine();
+                    }else{
+                        accessDenied();
+                    }
                     break;
 
                 case 3:
-                    updateMedicine();
+                    if(isAdmin() || isPharmacist()){
+                        updateMedicine();
+                    }else{
+                        accessDenied();
+                    }
                     break;
 
                 case 4:
-                    deleteMedicine();
-                    break;
+                    if(isAdmin()){
+                        deleteMedicine();
+                    }else{
+                        accessDenied();
+                    }
 
                 case 5:
                     searchMedicine();
@@ -59,6 +76,15 @@ public class MedicineMenu {
                     System.out.println("Invalid Choice");
             }
         }
+    }
+    private boolean isAdmin(){
+        return "ADMIN".equals(loggedInUser.getRole());
+    }
+    private boolean isPharmacist(){
+        return "PHARMACIST".equals(loggedInUser.getRole());
+    }
+    private void accessDenied(){
+        System.out.println("\nAccess Denied! You do not have permission to perform this action.");
     }
 
     //View All Medicines
