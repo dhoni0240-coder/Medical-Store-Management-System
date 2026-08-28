@@ -89,6 +89,7 @@ Future versions will introduce:
 - Data export
 - Database backup and restore
 - GUI/Web interface
+- Frontend Development
 
 ---
 

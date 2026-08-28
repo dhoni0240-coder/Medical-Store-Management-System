@@ -201,46 +201,133 @@ Current Database Tables:
 
 ---
 
-# 📌 Roadmap
+# 📌 Project Roadmap
 
-## 🔐 Version 3.1 — User Authentication & Access Control
+## ✅ Version 1.0 — Core Management
 
-- [ ] User Login System
-- [ ] Username & Password Validation
-- [ ] User Session Management
-- [ ] Logout
-- [ ] Admin & Cashier Roles
-- [ ] Role-Based Access Control
+* [✔] Medicine Management
+* [✔] Supplier Management
+* [✔] Customer Management
 
 ---
 
-## 🧾 Version 3.2 — Invoice & Document Management
+## ✅ Version 2.0 — Billing & Analytics
 
-- [ ] Invoice Generation
-- [ ] PDF Invoice Generation
-- [ ] Printable Invoice
-- [ ] Purchase Invoice
-
----
-
-## 💾 Version 3.3 — Backup & Security
-
-- [ ] Database Backup
-- [ ] Database Restore
-- [ ] Password Security
-- [ ] Input Validation
-- [ ] Improved Exception Handling
+* [✔] Billing Management
+* [✔] Bill History
+* [✔] Inventory Reports
+* [✔] Sales Reports
+* [✔] Profit Analysis
 
 ---
 
-## 🚀 Version 4.0 — Production Ready
+## ✅ Version 3.0 — Purchase Management
 
-- [ ] Complete Admin Dashboard
-- [ ] Cashier Dashboard
-- [ ] Advanced Reports
-- [ ] Performance Optimization
-- [ ] Final Testing
-- [ ] Production Release
+* [✔] Purchase Management
+* [✔] Purchase History
+* [✔] Stock Entry
+* [✔] Supplier Purchase Tracking
+* [✔] Automatic Stock Updates
+
+---
+
+## 🚧 Version 3.1 — Authentication, Access Control & Dashboard
+
+### 🔐 Authentication
+
+* [✔] User Login System
+* [✔] Username & Password Validation
+* [✔] User Session Management
+* [✔] Logout
+
+### 👥 User Roles
+
+* [✔] ADMIN Role
+* [✔] PHARMACIST Role
+* [✔] STAFF Role
+* [✔] Role-Based Access Control
+* [✔] User Management
+* [✔] Add New Users
+
+### 🛡️ Module-Level Access Control
+
+* [✔] Medicine Access Control
+* [✔] Supplier Access Control
+* [✔] Customer Access Control
+* [✔] Billing Access Control
+* [✔] Purchase Access Control
+* [✔] Reports Access Control
+* [✔] User Management Access Control
+
+---
+
+## 📋 Version 3.2 — Invoice & Document Management
+
+### 📊 Dashboard
+* [ ] Admin Dashboard
+* [ ] Pharmacist Dashboard
+* [ ] Staff Dashboard
+* [ ] Sales Summary
+* [ ] Inventory Summary
+* [ ] Low-Stock Summary
+* [ ] Expiry Alerts
+* [ ] Purchase Summary
+
+### Invoice Management
+* [ ] Invoice Generation
+* [ ] PDF Invoice Generation
+* [ ] Printable Invoice
+* [ ] Purchase Invoice
+* [ ] Invoice History
+* [ ] Improved Invoice Formatting
+
+---
+
+## 📋 Version 3.3 — Backup, Security & Reliability
+
+* [ ] Database Backup
+* [ ] Database Restore
+* [ ] Password Hashing
+* [ ] Input Validation
+* [ ] Improved Exception Handling
+* [ ] Transaction Management
+* [ ] Improved Database Security
+
+---
+
+## 🚀 Version 4.0 — Web & Production Version
+
+### 🌐 Frontend
+
+* [ ] Web-based User Interface
+* [ ] React Frontend
+* [ ] Responsive Design
+* [ ] Interactive Dashboard
+* [ ] Login Interface
+* [ ] Role-Based UI
+
+### ⚙️ Backend
+
+* [ ] Spring Boot Backend
+* [ ] REST APIs
+* [ ] API-Based Architecture
+* [ ] Frontend–Backend Integration
+
+### 📈 Advanced Features
+
+* [ ] Advanced Reports
+* [ ] Data Visualization
+* [ ] Excel Export
+* [ ] Performance Optimization
+* [ ] Final Testing
+
+### ☁️ Production
+
+* [ ] Deployment
+* [ ] Production Database Configuration
+* [ ] Production Release
+* [ ] Complete Documentation
+
 
 # 📚 Concepts Implemented
 
