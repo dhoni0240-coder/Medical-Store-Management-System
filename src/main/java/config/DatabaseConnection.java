@@ -13,8 +13,7 @@ public class DatabaseConnection{
     private static final String USERNAME = "root";
 
     //MySQL Password
-    private static final String PASSWORD = "ashirvad@123";
-
+    private static final String PASSWORD = System.getenv("DB_PASSWORD");
     //Establishing Connection
     public static Connection getConnection(){
 
@@ -24,7 +23,6 @@ public class DatabaseConnection{
                     USERNAME,
                     PASSWORD
             );
-            System.out.println("Connected to the Database");
             return connection;
 
         }catch(SQLException e){
@@ -32,7 +30,6 @@ public class DatabaseConnection{
             System.out.println("Connection Failed! Check output console");
             e.printStackTrace();
             return null;
-
         }
     }
 }
