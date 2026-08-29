@@ -18,6 +18,8 @@ public class Main {
         while(loggedInUser == null){
             loggedInUser = loginMenu.login();
         }
+        DashboardMenu dashboardMenu = new DashboardMenu(scanner, loggedInUser);
+        dashboardMenu.showDashboard();
 
         ReportMenu reportMenu = new ReportMenu();
         MedicineMenu medicineMenu = new MedicineMenu(scanner,loggedInUser);
