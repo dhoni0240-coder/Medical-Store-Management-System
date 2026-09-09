@@ -3,6 +3,8 @@ package menu;
 import service.DashboardService;
 import model.User;
 import model.DashboardStats;
+import model.Medicine;
+import java.util.List;
 
 import java.util.Scanner;
 
@@ -72,21 +74,90 @@ public class DashboardMenu{
                 ----------------------- ALERTS -------------------------
                 """);
 
-        System.out.printf(
-                "Low Stock Medicines      : %d%n",
-                stats.getLowStockCount()
-        );
+        //Low Stock Medicines
+        System.out.println("\nLow Stock Medicines : ");
+        List<Medicine> lowStockMedicine = stats.getLowStockMedicines();
 
-        System.out.printf(
-                "Out of Stock Medicines   : %d%n",
-                stats.getOutOfStockCount()
-        );
+        if(lowStockMedicine.isEmpty()){
+            System.out.println("No low Stock medicines found!");
+        }else{
+            for(Medicine medicine : lowStockMedicine){
+                System.out.printf(
+                        " %-30s Stock: %d%n",
+                        medicine.getMedicineName(),
+                        medicine.getQuantityInStock()
+                );
+            }
+        }
 
-        System.out.printf(
-                "Expiring Within 30 Days  : %d%n",
-                stats.getExpiringMedicineCount()
-        );
+        //Out of Stock Medicines
+        System.out.println("\nOut of Stock Medicines:");
+        List<Medicine> outOfStockMedicines = stats.getOutOfStockMedicines();
 
+        if(outOfStockMedicines.isEmpty()) {
+            System.out.println("No out of stock medicines.");
+        } else {
+            for (Medicine medicine : outOfStockMedicines) {
+                System.out.printf(
+                        "  %-30s Stock: %d%n",
+                        medicine.getMedicineName(),
+                        medicine.getQuantityInStock()
+                );
+            }
+        }
+
+        // Expiring Medicines
+        System.out.println("\nExpiring Within 30 Days:");
+        List<Medicine> expiringMedicines = stats.getExpiringMedicines();
+
+        if(expiringMedicines.isEmpty()) {
+            System.out.println("No medicines expiring within 30 days.");
+        } else {
+            for (Medicine medicine : expiringMedicines) {
+                System.out.printf(
+                        "  %-30s Expiry: %s | Stock: %d%n",
+                        medicine.getMedicineName(),
+                        medicine.getExpiryDate(),
+                        medicine.getQuantityInStock()
+                );
+            }
+        }
+
+        System.out.println("\nTop Selling Medicines:");
+        List<Medicine> topSellingMedicines = stats.getTopSellingMedicines();
+
+        if(expiringMedicines.isEmpty()){
+            System.out.println("No top selling medicines found!");
+        }else{
+            int rank = 1;
+            for(Medicine medicine : topSellingMedicines){
+
+                System.out.printf(
+                        "%d. %-30s Sold: %d%n",
+                        rank++,
+                        medicine.getMedicineName(),
+                        medicine.getQuantityInStock()
+                );
+            }
+        }
+
+        System.out.println("\nLeast Selling Medicines:");
+        List<Medicine> leastSellingMedicines = stats.getLeastSellingMedicines();
+
+        if (leastSellingMedicines.isEmpty()) {
+            System.out.println("No sales data available.");
+        } else {
+            int rank = 1;
+            for (Medicine medicine : leastSellingMedicines) {
+
+                System.out.printf(
+                        "%d. %-30s Sold: %d%n",
+                        rank++,
+                        medicine.getMedicineName(),
+                        medicine.getQuantityInStock()
+                );
+            }
+        }
         System.out.println("""
                 ==========================================================
                 """);

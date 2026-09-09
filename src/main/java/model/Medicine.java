@@ -30,6 +30,19 @@ public class Medicine {
         this.supplierId = supplierId;
     }
 
+    //DashboardDAO.java
+    public Medicine(int medicineId, String medicineName, int quantityInStock){
+        this.medicineId = medicineId;
+        this.medicineName = medicineName;
+        this.quantityInStock = quantityInStock;
+    }
+
+    public Medicine(int medicineId, String medicineName, int quantityInStock, String expiryDate){
+        this.medicineId = medicineId;
+        this.medicineName = medicineName;
+        this.quantityInStock = quantityInStock;
+        this.expiryDate = expiryDate;
+    }
 
     //Getter and Setter
    public int getMedicineId(){

@@ -1,6 +1,9 @@
 package dao;
 
 import config.DatabaseConnection;
+import model.Medicine;
+import java.util.List;
+import java.util.ArrayList;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -84,6 +87,39 @@ public class DashboardDAO {
         return 0;
     }
 
+    //get medicines which are completely out of stock
+    public List<Medicine> getOutOfStockMedicines(){
+        List<Medicine> medicines = new ArrayList<>();
+
+        String sql = """
+                SELECT medicine_id, medicine_name, quantity_in_stock
+                FROM medicines
+                WHERE quantity_in_stock = 0
+                ORDER BY medicine_name ASC
+                """;
+
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+        ){
+            while(resultSet.next()){
+                Medicine medicine = new Medicine(
+                        resultSet.getInt("medicine_id"),
+                        resultSet.getString("medicine_name"),
+                        resultSet.getInt("quantity_in_stock")
+                );
+                medicines.add(medicine);
+            }
+
+        }catch(Exception e){
+            System.out.println("Error fetching out of stock medicines!");
+            e.printStackTrace();
+        }
+        return medicines;
+    }
+
     // Medicines with stock <= 10
     public int getLowStockCount() {
 
@@ -112,6 +148,40 @@ public class DashboardDAO {
         return 0;
     }
 
+    //get medicines with low stock
+    public List<Medicine> getLowStockMedicines(){
+        List<Medicine> medicines = new ArrayList<>();
+        String sql = """
+                SELECT medicine_id, medicine_name, quantity_in_stock
+                FROM medicines
+                WHERE quantity_in_stock > 0
+                AND quantity_in_stock <= 10
+                ORDER BY quantity_in_stock ASC
+                """;
+
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+                ){
+
+            while(resultSet.next()){
+                Medicine medicine = new Medicine(
+                        resultSet.getInt("medicine_id"),
+                        resultSet.getString("medicine_name"),
+                        resultSet.getInt("quantity_in_stock")
+                );
+                medicines.add(medicine);
+            }
+
+        }catch(Exception e){
+            System.out.println("Error fetching low stock medicines!");
+            e.printStackTrace();
+        }
+        return medicines;
+    }
+
     // Medicines expiring within next 30 days
     public int getExpiringMedicineCount() {
 
@@ -138,6 +208,127 @@ public class DashboardDAO {
         }
 
         return 0;
+    }
+
+    //get Top selling medicines
+    public List<Medicine> getTopSellingMedicines(){
+        List<Medicine> medicines = new ArrayList<>();
+        String sql = """
+                SELECT m.medicine_id,
+                           m.medicine_name,
+                            SUM(s.quantity_sold) AS total_sold
+                            FROM sales_history s
+                            JOIN medicines m
+                            ON s.medicine_id = m.medicine_id
+                            GROUP BY m.medicine_id, m.medicine_name
+                            ORDER BY total_sold DESC
+                            LIMIT 5
+                """;
+        try(
+                Connection connection =DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                ){
+            while(resultSet.next()){
+                int medicineId = resultSet.getInt("medicine_id");
+                String medicineName = resultSet.getString("medicine_name");
+                int totalSold = resultSet.getInt("total_sold");
+
+                Medicine medicine = new Medicine(
+                        medicineId,
+                        medicineName,
+                        totalSold
+                );
+                medicines.add(medicine);
+            }
+
+        }catch(Exception e){
+            System.out.println("\nError fetching top selling medicines!");
+            e.printStackTrace();
+        }
+        return medicines;
+    }
+
+    // get Least Selling Medicines
+    public List<Medicine> getLeastSellingMedicines() {
+
+        List<Medicine> medicines = new ArrayList<>();
+
+        String sql = """
+            SELECT m.medicine_id,
+            m.medicine_name,
+            COALESCE(SUM(s.quantity_sold), 0) AS total_sold
+            FROM medicines m
+            LEFT JOIN sales_history s
+            ON m.medicine_id = s.medicine_id
+            GROUP BY m.medicine_id, m.medicine_name
+            ORDER BY total_sold ASC
+            LIMIT 5
+            """;
+
+        try (
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                ResultSet resultSet = preparedStatement.executeQuery();
+        ) {
+
+            while (resultSet.next()) {
+
+                int medicineId = resultSet.getInt("medicine_id");
+                String medicineName = resultSet.getString("medicine_name");
+                int totalSold = resultSet.getInt("total_sold");
+
+                Medicine medicine = new Medicine(
+                        medicineId,
+                        medicineName,
+                        totalSold
+                );
+
+                medicines.add(medicine);
+            }
+
+        } catch (Exception e) {
+
+            System.out.println("\nError fetching least selling medicines!");
+            e.printStackTrace();
+        }
+
+        return medicines;
+    }
+
+    //get medicines expiring within next 30 days
+    public List<Medicine> getExpiringMedicines(){
+        List<Medicine> medicines = new ArrayList<>();
+
+        String sql = """
+                SELECT medicine_id, medicine_name, expiry_date, quantity_in_stock
+                FROM medicines
+                WHERE expiry_date >= CURRENT_DATE
+                AND expiry_date <= DATE_ADD(CURRENT_DATE, INTERVAL 30 DAY)
+                ORDER BY expiry_date ASC
+                """;
+
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+                ){
+            while(resultSet.next()){
+                Medicine medicine = new Medicine(
+                        resultSet.getInt("medicine_id"),
+                        resultSet.getString("medicine_name"),
+                        resultSet.getInt("quantity_in_stock"),
+                        resultSet.getString("expiry_date")
+                );
+                medicines.add(medicine);
+            }
+
+        }catch(Exception e){
+            System.out.println("Error fetching expiring medicines!");
+            e.printStackTrace();
+        }
+        return medicines;
     }
 
     // Total customers
