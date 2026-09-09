@@ -8,6 +8,7 @@ import model.Customer;
 import model.Medicine;
 import model.Bill;
 import model.User;
+import dao.SalesHistoryDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ public class BillingService {
     private final BillDAO billDAO = new BillDAO();
     private final CustomerDAO customerDAO = new CustomerDAO();
     private final MedicineDAO medicineDAO = new MedicineDAO();
+    private final SalesHistoryDAO salesHistoryDAO = new SalesHistoryDAO();
 
     private final Scanner scanner;
 
@@ -151,6 +153,18 @@ public class BillingService {
 
             if (!inserted) {
                 System.out.println("Failed to save Bill Item!");
+                return;
+            }
+        }
+        for (BillItem item : billItems) {
+
+            boolean saleAdded = salesHistoryDAO.addSale(
+                    item.getMedicineId(),
+                    item.getQuantity()
+            );
+
+            if (!saleAdded) {
+                System.out.println("Failed to save Sales History!");
                 return;
             }
         }

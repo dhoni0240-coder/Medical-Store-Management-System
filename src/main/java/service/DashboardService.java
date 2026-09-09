@@ -1,6 +1,8 @@
 package service;
 import dao.DashboardDAO;
 import model.DashboardStats;
+import model.Medicine;
+import java.util.List;
 
 public class DashboardService{
 
@@ -21,6 +23,11 @@ public class DashboardService{
         int todayBills = dashboardDAO.getTodayBills();
         double todaySales = dashboardDAO.getTodaySales();
         double todayPurchases = dashboardDAO.getTodayPurchases();
+        List<Medicine> lowStockMedicines = dashboardDAO.getLowStockMedicines();
+        List<Medicine> outOfStockMedicines = dashboardDAO.getOutOfStockMedicines();
+        List<Medicine> expiringMedicines = dashboardDAO.getExpiringMedicines();
+        List<Medicine> topSellingMedicines = dashboardDAO.getTopSellingMedicines();
+        List<Medicine> leastSellingMedicines = dashboardDAO.getLeastSellingMedicines();
 
         return new DashboardStats(
                 totalMedicines,
@@ -32,7 +39,12 @@ public class DashboardService{
                 totalSuppliers,
                 todayBills,
                 todaySales,
-                todayPurchases
+                todayPurchases,
+                lowStockMedicines,
+                outOfStockMedicines,
+                expiringMedicines,
+                topSellingMedicines,
+                leastSellingMedicines
         );
     }
 }

@@ -18,8 +18,6 @@ public class Main {
         while(loggedInUser == null){
             loggedInUser = loginMenu.login();
         }
-        DashboardMenu dashboardMenu = new DashboardMenu(scanner, loggedInUser);
-        dashboardMenu.showDashboard();
 
         ReportMenu reportMenu = new ReportMenu();
         MedicineMenu medicineMenu = new MedicineMenu(scanner,loggedInUser);
@@ -44,8 +42,9 @@ public class Main {
                     4. Billing Management
                     5. Reports
                     6. Purchase Management
-                    7. Logout
+                    7. Dashboard
                     8. User Management
+                    9. Logout
                     0. Exit
                     """.formatted(
                             loggedInUser.getFull_name(),
@@ -90,11 +89,13 @@ public class Main {
                     break;
 
                 case 7:
-                    System.out.println("\nLogging out...");
-                    loggedInUser = null;
+                    if ("ADMIN".equals(loggedInUser.getRole()) ||
+                            "PHARMACIST".equals(loggedInUser.getRole())) {
 
-                    while(loggedInUser == null){
-                        loggedInUser = loginMenu.login();
+                        DashboardMenu dashboardMenu = new DashboardMenu(scanner, loggedInUser);
+                        dashboardMenu.showDashboard();
+                    } else {
+                        System.out.println("\nAccess denied! Only ADMIN or PHARMACIST can access Dashboard");
                     }
                     break;
 
@@ -104,6 +105,16 @@ public class Main {
                     }else{
                         System.out.println("\nAccess denied! Only Admin can access User Management");
                     }
+                    break;
+
+                case 9:
+                    System.out.println("\nLogging out...");
+                    loggedInUser = null;
+
+                    while (loggedInUser == null) {
+                        loggedInUser = loginMenu.login();
+                    }
+                    break;
 
                 case 0:
                     System.out.println("Thank you for using our application!");

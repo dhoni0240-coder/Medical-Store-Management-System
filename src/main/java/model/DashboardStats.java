@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class DashboardStats{
     private int totalMedicines;
     private int totalStock;
@@ -11,6 +13,11 @@ public class DashboardStats{
     private int todayBills;
     private double todaySales;
     private double todayPurchases;
+    private List<Medicine> lowStockMedicines;
+    private List<Medicine> outOfStockMedicines;
+    private List<Medicine> expiringMedicines;
+    private List<Medicine> topSellingMedicines;
+    private List<Medicine> leastSellingMedicines;
 
     public DashboardStats(
             int totalMedicines,
@@ -22,7 +29,13 @@ public class DashboardStats{
             int totalSuppliers,
             int todayBills,
             double todaySales,
-            double todayPurchases
+            double todayPurchases,
+
+            List<Medicine> lowStockMedicines,
+            List<Medicine> outOfStockMedicines,
+            List<Medicine> expiringMedicines,
+            List<Medicine> topSellingMedicines,
+            List<Medicine> leastSellingMedicines
     ){
         this.totalMedicines = totalMedicines;
         this.totalStock = totalStock;
@@ -34,6 +47,12 @@ public class DashboardStats{
         this.todayBills = todayBills;
         this.todaySales = todaySales;
         this.todayPurchases = todayPurchases;
+
+        this.lowStockMedicines = lowStockMedicines;
+        this.outOfStockMedicines = outOfStockMedicines;
+        this.expiringMedicines = expiringMedicines;
+        this.topSellingMedicines = topSellingMedicines;
+        this.leastSellingMedicines = leastSellingMedicines;
     }
 
     public int getTotalMedicines() {
@@ -75,4 +94,18 @@ public class DashboardStats{
     public double getTodayPurchases() {
         return todayPurchases;
     }
+
+    public List<Medicine> getLowStockMedicines(){
+        return lowStockMedicines;
+    }
+
+    public List<Medicine> getOutOfStockMedicines(){
+        return outOfStockMedicines;
+    }
+
+    public List<Medicine> getExpiringMedicines(){ return expiringMedicines; }
+
+    public List<Medicine> getTopSellingMedicines(){ return topSellingMedicines; }
+
+    public List<Medicine> getLeastSellingMedicines(){ return leastSellingMedicines; }
 }
