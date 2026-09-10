@@ -16,8 +16,8 @@ public class DashboardStats{
     private List<Medicine> lowStockMedicines;
     private List<Medicine> outOfStockMedicines;
     private List<Medicine> expiringMedicines;
-    private List<Medicine> topSellingMedicines;
-    private List<Medicine> leastSellingMedicines;
+    private List<MedicineSalesStats> topSellingMedicines;
+    private List<MedicineSalesStats> leastSellingMedicines;
 
     public DashboardStats(
             int totalMedicines,
@@ -34,8 +34,8 @@ public class DashboardStats{
             List<Medicine> lowStockMedicines,
             List<Medicine> outOfStockMedicines,
             List<Medicine> expiringMedicines,
-            List<Medicine> topSellingMedicines,
-            List<Medicine> leastSellingMedicines
+            List<MedicineSalesStats> topSellingMedicines,
+            List<MedicineSalesStats> leastSellingMedicines
     ){
         this.totalMedicines = totalMedicines;
         this.totalStock = totalStock;
@@ -105,7 +105,7 @@ public class DashboardStats{
 
     public List<Medicine> getExpiringMedicines(){ return expiringMedicines; }
 
-    public List<Medicine> getTopSellingMedicines(){ return topSellingMedicines; }
+    public List<MedicineSalesStats> getTopSellingMedicines(){ return topSellingMedicines; }
 
-    public List<Medicine> getLeastSellingMedicines(){ return leastSellingMedicines; }
+    public List<MedicineSalesStats> getLeastSellingMedicines(){ return leastSellingMedicines; }
 }

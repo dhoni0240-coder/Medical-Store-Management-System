@@ -1,8 +1,10 @@
 package menu;
 
+import model.MedicineSalesStats;
 import service.DashboardService;
 import model.User;
 import model.DashboardStats;
+import model.MedicineSalesStats;
 import model.Medicine;
 import java.util.List;
 
@@ -124,37 +126,37 @@ public class DashboardMenu{
         }
 
         System.out.println("\nTop Selling Medicines:");
-        List<Medicine> topSellingMedicines = stats.getTopSellingMedicines();
+        List<MedicineSalesStats> topSellingMedicines = stats.getTopSellingMedicines();
 
-        if(expiringMedicines.isEmpty()){
+        if(topSellingMedicines.isEmpty()){
             System.out.println("No top selling medicines found!");
         }else{
             int rank = 1;
-            for(Medicine medicine : topSellingMedicines){
+            for(MedicineSalesStats medicine : topSellingMedicines){
 
                 System.out.printf(
                         "%d. %-30s Sold: %d%n",
                         rank++,
                         medicine.getMedicineName(),
-                        medicine.getQuantityInStock()
+                        medicine.getTotalSold()
                 );
             }
         }
 
         System.out.println("\nLeast Selling Medicines:");
-        List<Medicine> leastSellingMedicines = stats.getLeastSellingMedicines();
+        List<MedicineSalesStats> leastSellingMedicines = stats.getLeastSellingMedicines();
 
         if (leastSellingMedicines.isEmpty()) {
             System.out.println("No sales data available.");
         } else {
             int rank = 1;
-            for (Medicine medicine : leastSellingMedicines) {
+            for (MedicineSalesStats medicine : leastSellingMedicines) {
 
                 System.out.printf(
                         "%d. %-30s Sold: %d%n",
                         rank++,
                         medicine.getMedicineName(),
-                        medicine.getQuantityInStock()
+                        medicine.getTotalSold()
                 );
             }
         }
