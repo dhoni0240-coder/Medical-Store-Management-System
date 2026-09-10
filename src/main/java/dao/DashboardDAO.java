@@ -4,6 +4,7 @@ import config.DatabaseConnection;
 import model.Medicine;
 import java.util.List;
 import java.util.ArrayList;
+import model.MedicineSalesStats;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -211,8 +212,8 @@ public class DashboardDAO {
     }
 
     //get Top selling medicines
-    public List<Medicine> getTopSellingMedicines(){
-        List<Medicine> medicines = new ArrayList<>();
+    public List<MedicineSalesStats> getTopSellingMedicines(){
+        List<MedicineSalesStats> medicines = new ArrayList<>();
         String sql = """
                 SELECT m.medicine_id,
                            m.medicine_name,
@@ -234,7 +235,7 @@ public class DashboardDAO {
                 String medicineName = resultSet.getString("medicine_name");
                 int totalSold = resultSet.getInt("total_sold");
 
-                Medicine medicine = new Medicine(
+                MedicineSalesStats medicine = new MedicineSalesStats(
                         medicineId,
                         medicineName,
                         totalSold
@@ -250,9 +251,9 @@ public class DashboardDAO {
     }
 
     // get Least Selling Medicines
-    public List<Medicine> getLeastSellingMedicines() {
+    public List<MedicineSalesStats> getLeastSellingMedicines() {
 
-        List<Medicine> medicines = new ArrayList<>();
+        List<MedicineSalesStats> medicines = new ArrayList<>();
 
         String sql = """
             SELECT m.medicine_id,
@@ -278,7 +279,7 @@ public class DashboardDAO {
                 String medicineName = resultSet.getString("medicine_name");
                 int totalSold = resultSet.getInt("total_sold");
 
-                Medicine medicine = new Medicine(
+                MedicineSalesStats medicine = new MedicineSalesStats(
                         medicineId,
                         medicineName,
                         totalSold
