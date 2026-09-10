@@ -9,6 +9,7 @@ import model.Medicine;
 import model.Bill;
 import model.User;
 import dao.SalesHistoryDAO;
+import service.InvoicePDFService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class BillingService {
     private final CustomerDAO customerDAO = new CustomerDAO();
     private final MedicineDAO medicineDAO = new MedicineDAO();
     private final SalesHistoryDAO salesHistoryDAO = new SalesHistoryDAO();
+    private final InvoicePDFService invoicePDFService = new InvoicePDFService();
 
     private final Scanner scanner;
 
@@ -183,6 +185,8 @@ public class BillingService {
                 return;
             }
         }
+        // Generate PDF invoice
+        invoicePDFService.generateInvoice(billId);
 
         System.out.println("\n==========================================");
         System.out.println("       MEDICAL STORE INVOICE");

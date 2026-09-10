@@ -17,8 +17,24 @@
     <dependencies>
 
         <dependency>
+            <!--MySQL JDBC Driver-->
+
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
+            <version>9.3.0</version>
+        </dependency>
+
+        <!-- iText PDF Kernel -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>kernel</artifactId>
+            <version>9.3.0</version>
+        </dependency>
+
+        <!-- iText PDF Layout -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>layout</artifactId>
             <version>9.3.0</version>
         </dependency>
 
