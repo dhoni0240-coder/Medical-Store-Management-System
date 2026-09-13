@@ -463,15 +463,40 @@ Future authentication functionality should securely handle user credentials.
 - [x] Purchase Details
 - [x] Automatic Stock Update
 - [x] Purchase Transaction Management
+- [x] User Authentication
+- [x] Login System
+- [x] Admin & Cashier Roles
+- [x] Role-Based Access Control
+- [x] Logout
+- [x] ADMIN Role
+- [x] PHARMACIST Role
+- [x] STAFF Role
+- [x] Role-Based Access Control
+- [x] User Management
+- [x] Add New Users
+- [x] Medicine Access Control
+- [x] Supplier Access Control
+- [x] Customer Access Control
+- [x] Billing Access Control
+- [x] Purchase Access Control
+- [x] Reports Access Control
+- [x] User Management Access Control
+- [x] Admin Dashboard
+- [x] Pharmacist Dashboard
+- [x] Staff Dashboard
+- [x] Sales Summary
+- [x] Inventory Summary
+- [x] Low-Stock Summary
+- [x] Expiry Alerts
+- [x] Purchase Summary
 
 ## Current Development
-
-- [ ] User Authentication
-- [ ] Login System
-- [ ] Admin & Cashier Roles
-- [ ] Role-Based Access Control
-- [ ] Logout
-
+- [x] Invoice Generation
+- [x] PDF Invoice Generation
+- [x] Printable Invoice
+- [x] Purchase Invoice
+- [ ] Invoice History
+- [ ] Improved Invoice Formatting
 # 19. Architecture
 
 The application follows a layered architecture:

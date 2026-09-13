@@ -274,10 +274,10 @@ Current Database Tables:
 * [✔] Purchase Summary
 
 ### Invoice Management
-* [ ] Invoice Generation
-* [ ] PDF Invoice Generation
-* [ ] Printable Invoice
-* [ ] Purchase Invoice
+* [✔] Invoice Generation
+* [✔] PDF Invoice Generation
+* [✔] Printable Invoice
+* [✔] Purchase Invoice
 * [ ] Invoice History
 * [ ] Improved Invoice Formatting
 

@@ -296,4 +296,34 @@ public class BillingService {
         }
         System.out.println("===================================================================================");
     }
+    public void invoiceHistory(){
+        List<Bill> billList = billDAO.getAllBills();
+
+        if(billList.isEmpty()){
+            System.out.println("\nNo invoice history found!");
+            return;
+        }
+        System.out.println("""
+            ============================================================================
+            --------------------------- INVOICE HISTORY -------------------------------
+            ============================================================================
+            Bill ID     Bill Date             Customer ID      Total        Final Amount
+            ----------------------------------------------------------------------------
+            """);
+
+        for(Bill bill : billList){
+
+            System.out.printf(
+                    "%-11d %-21s %-16d ₹%-11.2f ₹%.2f%n",
+                    bill.getBillId(),
+                    bill.getBillDate(),
+                    bill.getCustomerId(),
+                    bill.getTotalAmount(),
+                    bill.getFinalAmount()
+            );
+        }
+        System.out.println(
+                "============================================================================"
+        );
+    }
 }

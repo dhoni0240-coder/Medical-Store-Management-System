@@ -33,6 +33,7 @@ public class BillingMenu {
                     3. View Bill details(Bill ID)
                     4. View Bill by Customer Name
                     5. Generate Bill Invoice
+                    6. Invoice History
                     0. Back
                     """);
 
@@ -72,6 +73,14 @@ public class BillingMenu {
 
                 case 5:
                     generateBillInvoice();
+                    break;
+
+                case 6:
+                    if(isAdmin() || isPharmacist()){
+                        billingService.invoiceHistory();
+                    }else{
+                        accessDenied();
+                    }
                     break;
 
                 case 0:
