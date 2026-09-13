@@ -26,7 +26,7 @@ v3.1 ✅ Completed
 ├── Role-Based Access Control
 └── User Management
 
-v3.2 ✅ Planned
+v3.2 ✅ Completed
 ├── Dashboard
 ├── Admin Dashboard
 ├── Pharmacist Dashboard
@@ -35,13 +35,13 @@ v3.2 ✅ Planned
 ├── Low-Stock Alerts
 └── Expiry Alerts
 
-v3.3 📋 Planned
+v3.2 ✅ Completed
 ├── Invoice Generation
 ├── PDF Invoice
 ├── Printable Invoice
 └── Purchase Invoice
 
-v3.4 📋 Planned
+v3.3 📋 Planned
 ├── Database Backup
 ├── Database Restore
 ├── Password Hashing
