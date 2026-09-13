@@ -489,14 +489,23 @@ Future authentication functionality should securely handle user credentials.
 - [x] Low-Stock Summary
 - [x] Expiry Alerts
 - [x] Purchase Summary
-
-## Current Development
 - [x] Invoice Generation
 - [x] PDF Invoice Generation
 - [x] Printable Invoice
 - [x] Purchase Invoice
-- [ ] Invoice History
-- [ ] Improved Invoice Formatting
+- [x] Invoice History
+- [x] Improved Invoice Formatting
+
+## Current Development
+
+- [ ] Database Backup
+- [ ] Database Restore
+- [ ] Password Hashing
+- [ ] Input Validation
+- [ ] Improved Exception Handling
+- [ ] Transaction Management
+- [ ] Improved Database Security
+*
 # 19. Architecture
 
 The application follows a layered architecture:

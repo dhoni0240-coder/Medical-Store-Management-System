@@ -231,7 +231,7 @@ Current Database Tables:
 
 ---
 
-## 🚧 Version 3.1 — Authentication, Access Control & Dashboard
+## 🚧 Version 3.1 — Authentication & Access Control
 
 ### 🔐 Authentication
 
@@ -261,7 +261,7 @@ Current Database Tables:
 
 ---
 
-## 📋 Version 3.2 — Invoice & Document Management
+## 📋 Version 3.2 — Dashboard, Invoice & Document Management
 
 ### 📊 Dashboard
 * [✔] Admin Dashboard
@@ -278,8 +278,8 @@ Current Database Tables:
 * [✔] PDF Invoice Generation
 * [✔] Printable Invoice
 * [✔] Purchase Invoice
-* [ ] Invoice History
-* [ ] Improved Invoice Formatting
+* [✔] Invoice History
+* [✔] Improved Invoice Formatting
 
 ---
 

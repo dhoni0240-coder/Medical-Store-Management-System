@@ -6,6 +6,9 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.io.font.PdfEncodings;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
 import java.awt.Desktop;
 import dao.BillDAO;
 import dao.CustomerDAO;
@@ -64,6 +67,11 @@ public class InvoicePDFService {
             PdfDocument pdfDocument = new PdfDocument(writer);
 
             Document document = new Document(pdfDocument);
+            PdfFont unicodeFont = PdfFontFactory.createFont(
+                    "C:/Windows/Fonts/arial.ttf",
+                    PdfEncodings.IDENTITY_H
+            );
+            document.setFont(unicodeFont);
 
 
             // ==============================
@@ -74,30 +82,42 @@ public class InvoicePDFService {
 
             document.add(storeName);
 
-            document.add(new Paragraph("Medical Store Management System"));
+            Paragraph storeSubtitle = new Paragraph("Medical Store Management System");
+            document.add(storeSubtitle);
 
-            document.add(new Paragraph("------------------------------------------------"));
+            document.add(new Paragraph("==================================================="));
 
             // ==============================
             // BILL INFORMATION
             // ==============================
 
-            document.add(new Paragraph("Invoice No. : " + bill.getBillId()));
+            document.add(new Paragraph("INVOICE INFORMATION").setFontSize(14));
+            document.add(new Paragraph("Invoice No. :" +bill.getBillId()+
+                    "        Date : " + bill.getBillDate()));
 
-            document.add(new Paragraph("Date        : " + bill.getBillDate()));
+            document.add(new Paragraph("---------------------------------------------------"));
 
             // ==============================
             // CUSTOMER INFORMATION
             // ==============================
 
-            document.add(new Paragraph("\nCustomer Details").setFontSize(14));
+            document.add(new Paragraph("CUSTOMER DETAILS").setFontSize(14));
 
-            if (customer != null) {
+            document.add(new Paragraph("-----------------------------------------------"));
+
+            if(customer != null){
                 document.add(new Paragraph("Name    : " + customer.getCustomerName()));
+
                 document.add(new Paragraph("Phone   : " + customer.getPhone()));
+
                 document.add(new Paragraph("Email   : " + customer.getEmail()));
+
                 document.add(new Paragraph("Address : " + customer.getAddress()));
+
+            }else{
+                document.add(new Paragraph("Customer information not available."));
             }
+            document.add(new Paragraph("-----------------------------------------------"));
 
             // ==============================
             // ITEMS TABLE
@@ -107,16 +127,20 @@ public class InvoicePDFService {
 
             Table table = new Table(new float[]{1, 4, 1.5f, 2, 2});
 
-            table.addHeaderCell(new Cell().add(new Paragraph("No.")));
+            table.addHeaderCell(new Cell().add(new Paragraph("No."))
+                            .setTextAlignment(com.itextpdf.layout.properties.TextAlignment.CENTER));
 
-            table.addHeaderCell(new Cell().add(new Paragraph("Medicine")));
+            table.addHeaderCell(new Cell().add(new Paragraph("Medicine"))
+                            .setTextAlignment(com.itextpdf.layout.properties.TextAlignment.CENTER));
 
-            table.addHeaderCell(new Cell().add(new Paragraph("Qty")));
+            table.addHeaderCell(new Cell().add(new Paragraph("Qty"))
+                            .setTextAlignment(com.itextpdf.layout.properties.TextAlignment.CENTER));
 
-            table.addHeaderCell(new Cell().add(new Paragraph("Price")));
+            table.addHeaderCell(new Cell().add(new Paragraph("Price"))
+                            .setTextAlignment(com.itextpdf.layout.properties.TextAlignment.CENTER));
 
-            table.addHeaderCell(new Cell().add(new Paragraph("Subtotal")));
-
+            table.addHeaderCell(new Cell().add(new Paragraph("Subtotal"))
+                            .setTextAlignment(com.itextpdf.layout.properties.TextAlignment.CENTER));
 
             int itemNumber = 1;
 
@@ -128,19 +152,29 @@ public class InvoicePDFService {
 
                 if (medicine != null) {
                     medicineName = medicine.getMedicineName();
-                } else {
+                }else{
                     medicineName = "Unknown Medicine";
                 }
 
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(itemNumber++))));
+                // No. - Center
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(itemNumber++)))
+                                .setTextAlignment(com.itextpdf.layout.properties.TextAlignment.CENTER));
 
-                table.addCell(new Cell().add(new Paragraph(medicineName)));
+                // Medicine - Left
+                table.addCell(new Cell().add(new Paragraph(medicineName))
+                                .setTextAlignment(com.itextpdf.layout.properties.TextAlignment.LEFT));
 
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(item.getQuantity()))));
+                // Quantity - Center
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(item.getQuantity())))
+                                .setTextAlignment(com.itextpdf.layout.properties.TextAlignment.CENTER));
 
-                table.addCell(new Cell().add(new Paragraph(String.format("₹%.2f", item.getPrice()))));
+                // Price - Right
+                table.addCell(new Cell().add(new Paragraph(String.format("₹%.2f", item.getPrice())))
+                                .setTextAlignment(com.itextpdf.layout.properties.TextAlignment.RIGHT));
 
-                table.addCell(new Cell().add(new Paragraph(String.format("₹%.2f", item.getSubTotal()))));
+                // Subtotal - Right
+                table.addCell(new Cell().add(new Paragraph(String.format("₹%.2f", item.getSubTotal())))
+                        .setTextAlignment(com.itextpdf.layout.properties.TextAlignment.RIGHT));
             }
 
             document.add(table);
@@ -149,16 +183,23 @@ public class InvoicePDFService {
             // BILL SUMMARY
             // ==============================
 
-            document.add(
-                    new Paragraph("\n")
-            );
+            document.add(new Paragraph("BILL SUMMARY").setFontSize(14));
 
-            document.add(new Paragraph(String.format("Total Amount : ₹%.2f", bill.getTotalAmount())));
+            document.add(new Paragraph("-----------------------------------------------"));
+            document.add(new Paragraph(String.format("Total Amount : ₹%.2f", bill.getTotalAmount()))
+                            .setTextAlignment(
+                                    com.itextpdf.layout.properties.TextAlignment.RIGHT));
 
-            document.add(new Paragraph(String.format("Discount     : ₹%.2f", bill.getDiscount())));
+            document.add(new Paragraph(String.format("Discount     : ₹%.2f", bill.getDiscount()))
+                            .setTextAlignment(
+                                    com.itextpdf.layout.properties.TextAlignment.RIGHT));
 
-            document.add(new Paragraph(String.format("Final Amount : ₹%.2f", bill.getFinalAmount())));
+            document.add(new Paragraph(String.format("FINAL AMOUNT : ₹%.2f", bill.getFinalAmount()))
+                            .setFontSize(16)
+                            .setTextAlignment(
+                                    com.itextpdf.layout.properties.TextAlignment.RIGHT));
 
+            document.add(new Paragraph("-----------------------------------------------"));
 
             // ==============================
             // FOOTER
