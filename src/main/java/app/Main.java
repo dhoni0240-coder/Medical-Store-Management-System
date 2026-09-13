@@ -5,6 +5,7 @@ import menu.*;
 import java.util.Scanner;
 import model.User;
 import service.InvoicePDFService;
+import service.PurchaseInvoicePDFService;
 
 public class Main {
 

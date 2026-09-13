@@ -264,14 +264,14 @@ Current Database Tables:
 ## 📋 Version 3.2 — Invoice & Document Management
 
 ### 📊 Dashboard
-* [ ] Admin Dashboard
-* [ ] Pharmacist Dashboard
-* [ ] Staff Dashboard
-* [ ] Sales Summary
-* [ ] Inventory Summary
-* [ ] Low-Stock Summary
-* [ ] Expiry Alerts
-* [ ] Purchase Summary
+* [✔] Admin Dashboard
+* [✔] Pharmacist Dashboard
+* [✔] Staff Dashboard
+* [✔] Sales Summary
+* [✔] Inventory Summary
+* [✔] Low-Stock Summary
+* [✔] Expiry Alerts
+* [✔] Purchase Summary
 
 ### Invoice Management
 * [ ] Invoice Generation

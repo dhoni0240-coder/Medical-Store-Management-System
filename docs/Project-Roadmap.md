@@ -26,7 +26,7 @@ v3.1 ✅ Completed
 ├── Role-Based Access Control
 └── User Management
 
-v3.2 📋 Planned
+v3.2 ✅ Planned
 ├── Dashboard
 ├── Admin Dashboard
 ├── Pharmacist Dashboard

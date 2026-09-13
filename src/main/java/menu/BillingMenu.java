@@ -3,19 +3,21 @@ package menu;
 import service.BillingService;
 import java.util.Scanner;
 import model.User;
+import service.InvoicePDFService;
 
 public class BillingMenu {
 
     private final BillingService billingService;
     private final Scanner scanner;
     private final User loggedInUser;
+    private final InvoicePDFService invoicePDFService;
 
     public BillingMenu(Scanner scanner, User loggedInUser){
 
         this.scanner = scanner;
         this.loggedInUser = loggedInUser;
         this.billingService = new BillingService(scanner);
-
+        this.invoicePDFService = new InvoicePDFService();
     }
 
     public void showMenu() {
@@ -30,6 +32,7 @@ public class BillingMenu {
                     2. View All Bills
                     3. View Bill details(Bill ID)
                     4. View Bill by Customer Name
+                    5. Generate Bill Invoice
                     0. Back
                     """);
 
@@ -67,6 +70,10 @@ public class BillingMenu {
                     }
                     break;
 
+                case 5:
+                    generateBillInvoice();
+                    break;
+
                 case 0:
                     return;
 
@@ -74,6 +81,20 @@ public class BillingMenu {
                     System.out.println("Invalid Choice!");
             }
         }
+    }
+    private void generateBillInvoice(){
+
+        System.out.println("""
+            ============================================
+            ------------ GENERATE BILL INVOICE ----------
+            ============================================
+            """);
+
+        System.out.print("Enter Bill ID : ");
+        int billId = scanner.nextInt();
+        scanner.nextLine();
+
+        invoicePDFService.generateInvoice(billId);
     }
     private boolean isAdmin(){
         return "ADMIN".equals(loggedInUser.getRole());

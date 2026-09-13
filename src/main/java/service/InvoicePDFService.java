@@ -6,6 +6,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import java.awt.Desktop;
 import dao.BillDAO;
 import dao.CustomerDAO;
 import dao.MedicineDAO;
@@ -175,6 +176,29 @@ public class InvoicePDFService {
 
         } catch (Exception e) {
             System.out.println("\nError generating invoice PDF!");
+            e.printStackTrace();
+        }
+    }
+    public void printInvoice(int billId) {
+        String filePath = "invoices/invoice_" +billId+ ".pdf";
+
+        File invoiceFile = new File(filePath);
+        if(!invoiceFile.exists()){
+            System.out.println("Invoice pdf not found!");
+        }
+
+        Desktop desktop = Desktop.getDesktop();
+
+        try{
+            if(!Desktop.isDesktopSupported()){
+                System.out.println("Printing is not supported in this system!");
+                return;
+            }
+            desktop.print(invoiceFile);
+            System.out.println("Invoice file sent to printer successfully!");
+
+        }catch(Exception e){
+            System.out.println("Error printing invoice PDF!");
             e.printStackTrace();
         }
     }
