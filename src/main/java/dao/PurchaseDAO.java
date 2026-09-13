@@ -69,6 +69,38 @@ public class PurchaseDAO{
         return -1;
     }
 
+    //get purchase by ID
+    public Purchase getPurchaseById(int purchaseId){
+        String sql = """
+                SELECT *
+                FROM purchases
+                WHERE purchase_id = ?
+                """;
+
+        try(
+                Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql)
+                ){
+            preparedStatement.setInt(1, purchaseId);
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                if (resultSet.next()) {
+
+                    return new Purchase(
+                            resultSet.getInt("purchase_id"),
+                            resultSet.getInt("supplier_id"),
+                            resultSet.getInt("user_id"),
+                            resultSet.getDate("purchase_date").toLocalDate(),
+                            resultSet.getDouble("total_amount")
+                    );
+                }
+            }
+        }catch(SQLException e){
+            System.out.println("Error fetching purchase by ID");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     //Add Purchase Item
     public boolean addPurchaseItem(PurchaseItem purchaseItem){
         String sql = """

@@ -4,6 +4,7 @@ import model.Purchase;
 import model.PurchaseItem;
 import service.PurchaseService;
 import model.User;
+import service.PurchaseInvoicePDFService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +15,14 @@ public class PurchaseMenu{
     private final Scanner scanner;
     private final User loggedInUser;
     private final PurchaseService purchaseService;
+    private final PurchaseInvoicePDFService purchaseInvoicePDFService;
 
     public PurchaseMenu(Scanner scanner, User loggedInUser){
 
         this.scanner = scanner;
         this.loggedInUser = loggedInUser;
         this.purchaseService = new PurchaseService();
+        this.purchaseInvoicePDFService = new PurchaseInvoicePDFService();
 
     }
 
@@ -33,6 +36,7 @@ public class PurchaseMenu{
                     1. Create a new purchase
                     2. View Purchase History
                     3. View Purchase Details
+                    4. Generate Purchase Invoice
                     0. Back
                     """);
 
@@ -51,6 +55,10 @@ public class PurchaseMenu{
 
                 case 3:
                     purchaseDetails();
+                    break;
+
+                case 4:
+                    generatePurchaseInvoice();
                     break;
 
                 case 0:
@@ -177,5 +185,19 @@ public class PurchaseMenu{
         System.out.println("--------------------------------------------------------------");
         System.out.printf("Total Amount : ₹%.2f%n",total);
         System.out.println("===============================================================");
+    }
+    private void generatePurchaseInvoice(){
+
+        System.out.println("""
+            ============================================================
+            ---------------- GENERATE PURCHASE INVOICE ----------------
+            ============================================================
+            """);
+
+        System.out.print("Enter Purchase ID : ");
+        int purchaseId = scanner.nextInt();
+        scanner.nextLine();
+
+        purchaseInvoicePDFService.generatePurchaseInvoice(purchaseId);
     }
 }
