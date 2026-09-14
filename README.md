@@ -308,7 +308,7 @@ Current Database Tables:
 ✔ Username & Password Validation
 
 ✔ User Session Management
- 
+
 ✔ Logout
 
 ✔ ADMIN Role
@@ -384,8 +384,7 @@ Current Database Tables:
 * [✔] Automatic Stock Updates
 
 ---
-
-## ✅Version 3.1 — Authentication & Access Control
+## ✅ Version 3.1 — Authentication & Access Control
 
 ### 🔐 Authentication
 
