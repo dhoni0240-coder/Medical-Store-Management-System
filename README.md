@@ -14,7 +14,36 @@ This project follows a layered architecture using Java, JDBC, and MySQL, making 
 
 # ✨ Features
 
-## ✅ Medicine Management
+## 🔐 Authentication & User Management
+
+- User Login System
+- Username & Password Validation
+- User Session Management
+- Logout
+- User Management
+- Add New Users
+- ADMIN Role
+- PHARMACIST Role
+- STAFF Role
+- Role-Based Access Control
+
+---
+
+## 🛡️ Module-Level Access Control
+
+Different users have different permissions based on their roles.
+
+- Medicine Access Control
+- Supplier Access Control
+- Customer Access Control
+- Billing Access Control
+- Purchase Access Control
+- Reports Access Control
+- User Management Access Control
+
+---
+
+## 💊 Medicine Management
 
 - View All Medicines
 - Add New Medicine
@@ -26,10 +55,16 @@ This project follows a layered architecture using Java, JDBC, and MySQL, making 
   - Category
   - Formula
   - Batch Number
+- Medicine Stock Management
+- Rack Location Management
+- Batch Number Tracking
+- Manufacture Date Tracking
+- Expiry Date Tracking
+- Supplier Association
 
 ---
 
-## ✅ Supplier Management
+## 🏢 Supplier Management
 
 - View All Suppliers
 - Add Supplier
@@ -39,10 +74,13 @@ This project follows a layered architecture using Java, JDBC, and MySQL, making 
   - ID
   - Name
   - Phone Number
+- Company Information
+- Supplier Contact Details
+- Supplier Purchase Tracking
 
 ---
 
-## ✅ Customer Management
+## 👥 Customer Management
 
 - View All Customers
 - Add Customer
@@ -53,42 +91,108 @@ This project follows a layered architecture using Java, JDBC, and MySQL, making 
   - Name
   - Phone Number
   - Email
+- Customer Billing History
 
 ---
 
-## ✅ Billing System
+## 🧾 Billing Management
 
 - Generate Bills
 - Multiple Medicine Billing
+- Bill Item Management
 - Automatic Stock Update
 - Discount Calculation
-- Bill Item Management
-
----
-
-## ✅ Bill History
-
-- View All Bills
-- View Bill by Bill ID
+- Final Amount Calculation
+- Sales History Tracking
+- Bill Details by Bill ID
 - Search Bills by Customer Name
-- View Purchased Medicines for Each Bill
+- View All Bills
 
 ---
 
-## ✅ Inventory Reports
+## 📄 Invoice Management
+
+- Invoice Generation
+- PDF Invoice Generation
+- Printable Invoice
+- Bill Invoice Generation
+- Purchase Invoice Generation
+- Invoice History
+- Professionally Formatted PDF Invoices
+- Customer Details in Invoice
+- Medicine-wise Invoice Details
+- Automatic Total & Discount Calculation
+- Final Amount Display
+
+---
+
+## 🛒 Purchase Management
+
+- Create New Purchase
+- Purchase History
+- Purchase Details
+- Supplier-wise Purchase Tracking
+- Purchase Item Management
+- Purchase Invoice Generation
+- Automatic Medicine Stock Updates
+- Purchase Total Calculation
+- Database Transaction Management for Purchases
+
+---
+
+## 📊 Dashboard
+
+- Admin Dashboard
+- Pharmacist Dashboard
+- Store Summary
+- Total Medicine Count
+- Total Stock Quantity
+- Total Customer Count
+- Total Supplier Count
+- Today's Bills
+- Today's Sales
+- Today's Purchases
+- Low Stock Alerts
+- Out-of-Stock Alerts
+- Expiry Alerts
+- Top Selling Medicines
+- Least Selling Medicines
+
+---
+
+## 📦 Inventory Reports
 
 - Low Stock Medicines
 - Out of Stock Medicines
-- Expiring Medicines (Next 30 Days)
+- Expiring Medicines
+- Medicines Expiring Within 30 Days
+- Current Stock Tracking
+- Stock History
 
 ---
 
-## ✅ Sales Reports
+## 📈 Sales & Profit Reports
 
 - Daily Sales Report
 - Monthly Sales Report
 - Top Selling Medicines
-- Profit Report
+- Least Selling Medicines
+- Profit Analysis
+- Sales History
+- Medicine-wise Sales Tracking
+
+---
+
+## 🗄️ Database Management
+
+- MySQL Database
+- JDBC Connectivity
+- Relational Database Design
+- Foreign Key Relationships
+- Database Transactions
+- Stock History Tracking
+- Sales History Tracking
+- Purchase History Tracking
 
 ---
 
