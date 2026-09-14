@@ -173,7 +173,7 @@ Current Database Tables:
 
 # 🚀 Current Progress
 
-## ✅ Version 3.0 (Current)
+## ✅ Version 3.2 (Current)
 
 ✔ Medicine Module
 
@@ -198,6 +198,56 @@ Current Database Tables:
 ✔ Automatic Stock Update
 
 ✔ Database Transaction Management for Purchases
+
+✔ User Login System
+
+✔ Username & Password Validation
+
+✔ User Session Management
+ 
+✔ Logout
+
+✔ ADMIN Role
+
+✔ PHARMACIST Role
+
+✔ STAFF Role
+
+✔ Role-Based Access Control
+
+✔ User Management
+
+✔ Add New Users
+
+✔ Module-Level Access Control
+
+✔ Admin Dashboard
+
+✔ Pharmacist Dashboard
+
+✔ Staff Dashboard
+
+✔ Sales Summary
+
+✔ Inventory Summary
+
+✔ Low-Stock Summary
+
+✔ Expiry Alerts
+
+✔ Purchase Summary
+
+✔ Invoice Generation
+
+✔ PDF Invoice Generation
+
+✔ Printable Invoice
+
+✔ Purchase Invoice
+
+✔ Invoice History
+
+✔ Improved Invoice Formatting
 
 ---
 
@@ -231,7 +281,7 @@ Current Database Tables:
 
 ---
 
-## 🚧 Version 3.1 — Authentication & Access Control
+## ✅Version 3.1 — Authentication & Access Control
 
 ### 🔐 Authentication
 
@@ -261,7 +311,7 @@ Current Database Tables:
 
 ---
 
-## 📋 Version 3.2 — Dashboard, Invoice & Document Management
+## ✅ Version 3.2 — Dashboard, Invoice & Document Management
 
 ### 📊 Dashboard
 * [✔] Admin Dashboard
@@ -349,9 +399,9 @@ Current Database Tables:
 
 # 🚧 Project Status
 
-🟢 **Version 3.1 In Development**
+🟢 **Version 3.3 In Development**
 
-Current Progress: **Approximately 65% Complete**
+Current Progress: **Approximately 75% Complete**
 
 ---
 
