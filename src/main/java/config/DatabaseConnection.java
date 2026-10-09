@@ -4,30 +4,36 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DatabaseConnection{
+public class DatabaseConnection {
 
-    //Database URL
-    private static final String URL = "jdbc:mysql://localhost:3306/medical_store_db";
-
-    //MySQL Username
-    private static final String USERNAME = "root";
-
-    //MySQL Password
-    private static final String PASSWORD = System.getenv("DB_PASSWORD");
-    //Establishing Connection
-    public static Connection getConnection(){
-
-        try{
-            Connection connection = DriverManager.getConnection(
-                    URL,
-                    USERNAME,
-                    PASSWORD
+    // Database URL
+    private static final String URL = System.getenv()
+            .getOrDefault(
+                    "DB_URL",
+                    "jdbc:mysql://localhost:3306/medical_store_db"
             );
-            return connection;
 
-        }catch(SQLException e){
+    // MySQL credentials from environment variables
+    private static final String USERNAME = System.getenv("DB_USERNAME");
+    private static final String PASSWORD = System.getenv("DB_PASSWORD");
 
-            System.out.println("Connection Failed! Check output console");
+    // Establish database connection
+    public static Connection getConnection() {
+
+        if (USERNAME == null || USERNAME.isBlank()
+                || PASSWORD == null || PASSWORD.isBlank()) {
+
+            System.out.println(
+                    "Connection Failed! Set DB_USERNAME and DB_PASSWORD."
+            );
+            return null;
+        }
+
+        try {
+            return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+
+        } catch (SQLException e) {
+            System.out.println("Database connection failed.");
             e.printStackTrace();
             return null;
         }
