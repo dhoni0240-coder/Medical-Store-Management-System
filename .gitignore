@@ -55,3 +55,13 @@ test-purchase-invoice.pdf
 
 # Private database records
 database/sample-data.sql
+
+# Local database backups
+*.sql.bak
+*.dump
+*.db
+*.sqlite
+*.sqlite3
+
+# Local configuration files
+application-local.properties
